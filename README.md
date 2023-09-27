@@ -73,8 +73,6 @@ I started this personal project with the aim to brush up my Java and Angular ski
 
 Linh Do - do24l@mtholyoke.edu/dohalinh2303@gmail.com (personal)
 
-Project Link: [https://github.com/LynnHaDo/Checkbox-Detection](https://github.com/LynnHaDo/Checkbox-Detection)
-
 LinkedIn: [https://linkedin.com/in/linh-do-0327371b2/](https://www.linkedin.com/in/linh-do-0327371b2/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
