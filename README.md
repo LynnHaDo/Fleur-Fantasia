@@ -43,6 +43,21 @@
 
 This project is still in progress 🔜 
 
+- [x] Add Spring Boot backend
+- [x] Add basic Angular frontend (Products list)
+- [ ] Add complete Angular frontend
+    - [ ] Home
+    - [ ] Product Detail
+- [ ] Search and filter functionalities
+- [ ] Check out
+    - [ ] Credit card payment
+- [ ] Member registration
+- [ ] Add security
+
+See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
