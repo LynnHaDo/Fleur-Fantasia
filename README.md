@@ -43,7 +43,8 @@
 
 This project is still in progress 🔜 
 
-- [x] Add Spring Boot backend
+- [x] Add SQL databases 
+- [x] Add Spring Boot backend (enables connection with databases)
 - [x] Add basic Angular frontend (Products list)
 - [ ] Add complete Angular frontend
     - [ ] Home
