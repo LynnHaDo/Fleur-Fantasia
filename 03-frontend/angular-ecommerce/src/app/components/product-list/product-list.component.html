@@ -1,9 +1,16 @@
-<div class="container text-center">
+<div class="container text-center main-content">
     <div class="row">
       <div class="col-6 col-md-4 col-sm product" *ngFor = "let product of products">
-        <img src = "{{product.imageUrl}}" class="img-fluid rounded wiggle" alt="{{ product.name }}"/>
-        <h4 class = "product_name">{{ product.name }}</h4>
+        <a href = "#">
+            <img src = "{{product.imageUrl}}" class="img-fluid rounded wiggle" alt="{{ product.name }}"/>
+        </a>
+        <a href = "#">
+            <h4 class = "product_name">{{ product.name }}</h4>
+        </a>
         <p class = "product_desc">{{ product.unitPrice | currency :'USD' }}</p>
+        <a href="#" class="primary-btn">Add to cart</a>
       </div>
     </div>
 </div>
+
+
