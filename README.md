@@ -49,7 +49,10 @@ This project is still in progress 🔜
 - [x] Add complete Angular frontend
     - [x] Home
     - [x] Product Detail
-- [ ] Search and filter functionalities
+- [x] Search and filter functionalities
+    - [x] Search by category
+    - [x] Search by keyword
+- [ ] Product Detail View
 - [ ] Check out
     - [ ] Credit card payment
 - [ ] Member registration

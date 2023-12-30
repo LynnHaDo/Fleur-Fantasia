@@ -246,7 +246,7 @@ input.au-input.au-input-xl{
     font-size:22px;
     float:left;
     margin-top:16px;
-    color:#fff;
+    color:rgb(15, 52, 41);
     margin-left:15px
 }
 
@@ -288,11 +288,13 @@ input.au-input.au-input-xl{
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:43px;
-    background:rgb(15, 52, 41)
+    background:rgb(15, 52, 41);
 }
 
 .au-btn-submit:hover{
-    background:#05143f
+    background:rgb(128, 191, 173);
+    border:1px solid rgb(128, 191, 173);
+    transition: all .3s ease;
 }
 
 .au-btn-submit>i{
@@ -341,7 +343,6 @@ input.au-input.au-input-xl{
     -webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
     -moz-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
     box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
-    border-right:1px solid #e5e5e5;
     position:relative;
     z-index:3
 }
@@ -709,7 +710,7 @@ table.table.table-bordered th{
  * ----------------------------
  */
 
- .btn-info{
+.btn-info{
     color:#fff;
     background-color:rgb(128, 191, 173)!important;
     border-color:rgb(128, 191, 173)!important
@@ -894,7 +895,6 @@ footer ul li{
         font-size:22px;
         float:left;
         margin-top:16px;
-        color:rgb(15, 52, 41);
         margin-left:15px
     }
         .header-wrap2{
@@ -945,7 +945,6 @@ footer ul li{
         font-size:22px;
         float:left;
         margin-top:16px;
-        color:rgb(15, 52, 41);
         margin-left:15px
     }
     .footer-pagination{
