@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
     color: rgb(15, 52, 41);
 }
 
-p,a {
+p,a, span {
     font-family: 'Gabarito', sans-serif;
 }
 
@@ -144,7 +144,8 @@ aside.menu-sidebar.d-none.d-lg-block.clr{
     right:0;
     left:200px;
     height:75px;
-    z-index:3
+    z-index:3;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .header-desktop .section-content{
@@ -258,7 +259,8 @@ input.au-input.au-input-xl{
     border:1px solid rgb(15, 52, 41);
     float:left;
     margin-top:7px;
-    padding-left:17px
+    padding-left:17px;
+    font-size:14px;
 }
 
 .total span{
@@ -289,6 +291,7 @@ input.au-input.au-input-xl{
     -moz-border-radius:3px;
     border-radius:43px;
     background:rgb(15, 52, 41);
+    font-size:14px;
 }
 
 .au-btn-submit:hover{
@@ -298,7 +301,6 @@ input.au-input.au-input-xl{
 }
 
 .au-btn-submit>i{
-    font-size:20px;
     color:#fff;
     position:absolute;
     top:50%;
@@ -322,12 +324,11 @@ input.au-input.au-input-xl{
     left:0;
     top:0;
     bottom:0;
-    background:#fff;
-    overflow-y:auto
+    overflow-y:auto;
+    border-right: 1px solid #e5e5e5;
 }
 
 .menu-sidebar .logo{
-    background:#fff;
     height:75px;
     padding:0 35px;
     display:-webkit-box;
@@ -340,15 +341,13 @@ input.au-input.au-input-xl{
     -moz-box-align:center;
     -ms-flex-align:center;
     align-items:center;
-    -webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
-    -moz-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
-    box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
     position:relative;
-    z-index:3
+    z-index:3;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .menu-sidebar .logo .img-responsive {
-    width: 70px;
+    width: 87px;
 }
 
 .menu-sidebar .navbar-list .navbar-sub-list{
@@ -736,6 +735,46 @@ a.primary-btn:hover{
 
 /* 
  * ----------------------------
+ * Pagination
+ * ----------------------------
+ */
+
+ngb-pagination {
+    font-family: 'Gabarito', sans-serif;
+    font-size: 14px;
+}   
+
+.pagination li a
+{
+    background-color: rgb(249, 244, 238)!important;
+    color: rgb(15, 52, 41)!important;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: rgb(128, 191, 173);
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+    color: rgb(128, 191, 173)!important;
+    background-color: rgb(15, 52, 41) !Important;
+    border: solid 1px rgb(15, 52, 41) !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: rgb(15, 52, 41)!Important;
+    border: solid 1px rgb(15, 52, 41)!;
+}
+
+/* 
+ * ----------------------------
  * Footer section
  * ----------------------------
  */
@@ -970,7 +1009,6 @@ footer ul li{
         background:rgb(15, 52, 41)
     }
     input.au-input.au-input-xl{
-        border-radius:0!important;
         margin-right:0
     }
     .cart-area.d-b{

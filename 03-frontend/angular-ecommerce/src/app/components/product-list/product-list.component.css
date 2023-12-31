@@ -16,3 +16,29 @@
 .product .product_desc {
     color: rgb(128, 191, 173)
 }
+
+.page-size {
+    display: flex;
+    align-items:center;
+    justify-content:right
+}
+
+.page-size span {
+    font-size: 14px;
+    width: 70px;
+    display: block;
+}
+
+.page-size select {
+  background-color: transparent;
+  border-color:#e5e5e5;
+  border-radius: 2px;
+  transition: all .5s ease;
+  position: relative;
+  font-size: 14px;
+  color: #474747;
+  height: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding: 0 15px;
+}

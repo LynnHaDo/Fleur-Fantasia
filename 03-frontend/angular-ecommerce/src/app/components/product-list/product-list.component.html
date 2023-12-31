@@ -1,23 +1,65 @@
 <div class="container-fluid main-content">
-    <div class="text-center section-content-p30">
-        <div class="row">
-            <div class="col-6 col-md-4 col-sm product" *ngFor = "let product of products">
-                <a href = "#">
-                    <div class = "img-container">
-                        <img src = "{{product.imageUrl}}" class="img-fluid rounded wiggle" alt="{{ product.name }}"/>
-                    </div>
-                </a>
-                <a href = "#">
-                    <h4 class = "product_name">{{ product.name }}</h4>
-                </a>
-                <p class = "product_desc">{{ product.unitPrice | currency :'USD' }}</p>
-                <a href="#" class="primary-btn">Add to cart</a>
-            </div>
+  <div class="text-center section-content-p30">
+    <div class="row">
+      <div
+        class="col-6 col-md-4 col-sm product"
+        *ngFor="let product of products"
+      >
+        <a href="/products/{{ product.id }}">
+          <div class="img-container">
+            <img
+              src="{{ product.imageUrl }}"
+              class="img-fluid rounded wiggle"
+              alt="{{ product.name }}"
+            />
+          </div>
+        </a>
+        <a href="/products/{{ product.id }}">
+          <h4 class="product_name">{{ product.name }}</h4>
+        </a>
+        <p class="product_desc">{{ product.unitPrice | currency : "USD" }}</p>
+        <a href="#" class="primary-btn">Add to cart</a>
+      </div>
 
-            <!-- if products not found -->
-            <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role = "alert">No products found</div>
-        </div>
+      <!-- if products not found -->
+      <div
+        *ngIf="products?.length == 0"
+        class="alert alert-warning col-md-12"
+        role="alert"
+      >
+        No products found
+      </div>
     </div>
+
+    <!--Pagination-->
+    <div class="footer-pagination">
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+        <div class = "row">
+        <div class = "col-md-1"></div>
+          <div class="col-md-6" style = "justify-content: right;">
+            <ngb-pagination
+              [(page)]="thePageNumber"
+              [pageSize]="thePageSize"
+              [maxSize] = "5"
+              [collectionSize]="theTotalElements"
+              (pageChange)="listProducts()"
+            >
+            </ngb-pagination>
+          </div>
+          <div class = "col-md-5 page-size">
+            <span class = "mr-3">Page Size</span>
+            <select id = "page-select" #myPageSelect (change) = "updatePageSize(+myPageSelect.value)">
+                <option selected = "true">9</option>
+                <option>12</option>
+                <option>18</option>
+                <option>30</option>
+            </select>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-

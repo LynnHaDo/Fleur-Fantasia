@@ -1,0 +1,38 @@
+<div class="main-content container-fluid detail-content">
+    <div class="section-content-p30">
+        <div class = "row">
+            <div class = "col-lg-5">
+                <h3>{{ product.name }}</h3>
+                <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
+                
+                <hr>
+                <div class = "buttons">
+                    <h4>Quantity</h4>
+                    <div class = "quantity">
+                        <button (click) = "decrementQuantity(+quantity.innerHTML)" id = "decrement" type = "button">-</button>
+                        <span class = "num" #quantity>1</span>
+                        <button (click) = "incrementQuantity(+quantity.innerHTML)" id = "increment" type = "button">+</button>
+                    </div>
+                    <a href="#" class="primary-btn">Add to cart</a>
+                </div>
+
+                <hr>
+                <h4>Description</h4>
+                <p>{{ product.description }}</p>
+            </div>
+            <div class = "col-lg-1"></div> 
+            <div class = "col-lg-6">
+                <a data-fancybox="gallery" href = "{{ product.imageUrl }}">
+                    <img src="{{ product.imageUrl }}" class="detail-img">
+                </a>
+            </div>
+            <a routerLink="/products" class="mt-5">Back to Product List</a>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script>
+      Fancybox.bind('[data-fancybox]', {
+        //
+      });    
+</script>
