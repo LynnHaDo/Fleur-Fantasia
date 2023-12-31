@@ -43,7 +43,14 @@
 
 This project is still in progress 🔜 
 
-<div style="position: relative; padding-bottom: 45.62500000000001%; height: 0;"><iframe src="https://www.loom.com/embed/1fb95ee10e6d41fc8d8b9ac58a7c4792?sid=5303015c-230f-4ea1-849a-767296333b1e" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<div>
+    <a href="https://www.loom.com/share/1fb95ee10e6d41fc8d8b9ac58a7c4792">
+      <p>Fleur Fantasia - 31 December 2023 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/1fb95ee10e6d41fc8d8b9ac58a7c4792">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/1fb95ee10e6d41fc8d8b9ac58a7c4792-with-play.gif">
+    </a>
+</div>
 
 - [x] Add SQL databases 
 - [x] Add Spring Boot backend (enables connection with databases)
