@@ -4,6 +4,8 @@ import { Product } from 'src/app/common/product';
 import { ProductService } from 'src/app/services/product.service';
 
 import { Fancybox } from '@fancyapps/ui';
+import { CartService } from 'src/app/services/cart.service';
+import { CartItem } from 'src/app/common/cart-item';
 
 @Component({
   selector: 'app-product-details',
@@ -16,6 +18,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
+    private cartService: CartService,
     private route: ActivatedRoute,
     private elRef: ElementRef
   ) {}
@@ -51,5 +54,12 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   incrementQuantity(quantity: number){
     var num = new Number(quantity + 1);
     document.querySelector(".num")!.innerHTML = num.toString();
+  }
+
+  addToCart(){
+    let theCartItem = new CartItem(this.product);
+    let theQuantity = +document.querySelector(".num")!.innerHTML;
+    theCartItem.quantity = theQuantity;
+    this.cartService.addToCart(theCartItem, theQuantity);
   }
 }

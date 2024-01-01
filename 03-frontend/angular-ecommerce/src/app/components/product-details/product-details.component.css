@@ -15,17 +15,6 @@
     justify-content: space-between;
 }
 
-.detail-content .buttons .quantity {
-    height: 100%;
-    border: 1px solid rgb(15, 52, 41);
-    border-radius: 10px;
-    padding: 7px 10px;
-    width: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .detail-content .buttons h4 {
     margin: 0!important;
 }

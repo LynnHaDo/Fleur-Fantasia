@@ -52,6 +52,8 @@ This project is still in progress 🔜
     </a>
 </div>
 
+<br>
+
 - [x] Add SQL databases 
 - [x] Add Spring Boot backend (enables connection with databases)
 - [x] Add basic Angular frontend (Products list)
@@ -64,6 +66,7 @@ This project is still in progress 🔜
 - [x] Product Detail View
 - [x] Pagination
 - [ ] Check out
+    - [x] Add/Remove/Modify items in cart
     - [ ] Credit card payment
 - [ ] Member registration
 - [ ] Add security

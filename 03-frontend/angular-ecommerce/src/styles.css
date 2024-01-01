@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
     color: rgb(15, 52, 41);
 }
 
-p,a, span {
+p,a, span, button {
     font-family: 'Gabarito', sans-serif;
 }
 
@@ -41,6 +41,10 @@ h3 {
 
 h4 {
     font-size: 20px;
+}
+
+h5 {
+    font-size: 16px;
 }
 
 p {
@@ -68,6 +72,13 @@ button{
     background:0 0
 }
 
+a,a:hover,button:hover{
+    -webkit-transition:all .3s ease;
+    -o-transition:all .3s ease;
+    -moz-transition:all .3s ease;
+    transition:all .3s ease
+}
+
 img{
     max-width:100%;
     height:auto
@@ -81,13 +92,6 @@ a{
 a:active,a:focus,a:hover{
     text-decoration:none;
     outline:0
-}
-
-a,a:hover{
-    -webkit-transition:all .3s ease;
-    -o-transition:all .3s ease;
-    -moz-transition:all .3s ease;
-    transition:all .3s ease
 }
 
 /* Wiggle effect */
@@ -146,6 +150,10 @@ aside.menu-sidebar.d-none.d-lg-block.clr{
     height:75px;
     z-index:3;
     border-bottom: 1px solid #e5e5e5;
+    /* From https://css.glass */
+    background: rgba(229, 229, 229, 0.21);
+    backdrop-filter: blur(9.5px);
+    -webkit-backdrop-filter: blur(9.5px);
 }
 
 .header-desktop .section-content{
@@ -220,7 +228,7 @@ section{
 }
 
 input.au-input.au-input-xl{
-    border-radius:40px!important;
+    border-radius:40px;
     margin-right:15px
 }
 
@@ -297,7 +305,6 @@ input.au-input.au-input-xl{
 .au-btn-submit:hover{
     background:rgb(128, 191, 173);
     border:1px solid rgb(128, 191, 173);
-    transition: all .3s ease;
 }
 
 .au-btn-submit>i{
@@ -658,33 +665,15 @@ select{
  * ----------------------------
  */
 
-.table{
-    margin:0
-}
-table.table.table-bordered{
-    border:1px solid #ccc;
-    background:#fff
-}
-.table-bordered td,.table-bordered th{
-    border:1px solid #dee2e6
-}
-table.table.table-bordered th{
-    BACKGROUND:rgb(128, 191, 173);
-    color:#fff;
-    font-size:14px;
-    padding:7px
-}
-.table-responsive{
-    padding-right:1px
-}
-.items select{
-    width:100px;
-    height:40px;
-    border-radius:40px;
-    padding-left:15px;
-    margin-bottom:10px;
-    outline:0;
-    margin-left:5px
+.quantity {
+    height: 100%;
+    border: 1px solid rgb(15, 52, 41);
+    border-radius: 10px;
+    padding: 7px 10px;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* 
@@ -714,7 +703,7 @@ table.table.table-bordered th{
     background-color:rgb(128, 191, 173)!important;
     border-color:rgb(128, 191, 173)!important
 }
-a.primary-btn{
+.primary-btn{
     background:rgb(15, 52, 41);
     padding:7px 20px;
     text-align:center;
@@ -724,7 +713,7 @@ a.primary-btn{
     font-size:14px;
     margin-top:5px
 }
-a.primary-btn:hover{
+.primary-btn:hover{
     background:rgb(128, 191, 173);
     color:#fff
 }
@@ -859,7 +848,7 @@ footer ul li{
     }
     .page-container{
         position:relative;
-        top:88px;
+        top:0;
         padding-left:0
     }
      .page-wrapper{
@@ -947,8 +936,10 @@ footer ul li{
 
 
 @media (max-width:767px){
-      .au-input-xl{
-        min-width:150px
+    .au-input-xl{
+        min-width:150px;
+        border-top-right-radius: 0!important;
+        border-bottom-right-radius: 0!important;
     }
     .header-button-item{
         font-size:22px;
@@ -992,21 +983,13 @@ footer ul li{
     .product-box{
         text-align:centerg
     }
-    .page-container{
-        position:relative;
-        top:66px;
-        padding-left:0
-    }
     .au-btn-submit{
         position:relative;
         right:10px;
         min-width:85px;
         color:#fff;
-        border:1px solid rgb(15, 52, 41);
-        -webkit-border-radius:3px;
-        -moz-border-radius:3px;
-        border-radius:0;
-        background:rgb(15, 52, 41)
+        border-top-left-radius:0;
+        border-bottom-left-radius:0;
     }
     input.au-input.au-input-xl{
         margin-right:0

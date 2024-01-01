@@ -1,0 +1,27 @@
+.cart-content .summary h5,p {
+    margin-bottom: 0; 
+    line-height: 1;
+}
+
+.cart-content .item-box {
+    margin-top: 0.5rem;
+}
+
+.cart-content .item-box a {
+    display: block;
+}
+
+.cart-content .item-box .quantity-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.cart-content .item-box .quantity {
+    height: 40px;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.cart-content .item-box h5 {
+    margin-top: 15px;
+}

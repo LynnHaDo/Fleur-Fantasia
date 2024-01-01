@@ -13,7 +13,7 @@
                         <span class = "num" #quantity>1</span>
                         <button (click) = "incrementQuantity(+quantity.innerHTML)" id = "increment" type = "button">+</button>
                     </div>
-                    <a href="#" class="primary-btn">Add to cart</a>
+                    <button class="primary-btn" (click) = "addToCart()">Add to cart</button>
                 </div>
 
                 <hr>
@@ -26,7 +26,7 @@
                     <img src="{{ product.imageUrl }}" class="detail-img">
                 </a>
             </div>
-            <a routerLink="/products" class="mt-5">Back to Product List</a>
+            <a routerLink="/products" class="mt-5">Back to shopping</a>
         </div>
     </div>
 </div>

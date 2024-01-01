@@ -1,0 +1,68 @@
+import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
+import { CartItem } from 'src/app/common/cart-item';
+
+@Component({
+  selector: 'app-cart-details',
+  templateUrl: './cart-details.component.html',
+  styleUrl: './cart-details.component.css'
+})
+export class CartDetailsComponent implements OnInit {
+    cartItems: CartItem[] = [];
+    numItems: number = 0;
+    subTotal: number = 0;
+    shipping: number = 0;
+    tax: number = 0;
+    total: number = 0;
+
+    ngOnInit(): void{
+        this.displayCart();
+    }
+
+    constructor(private cartService: CartService){}
+
+    displayCart(){        
+        this.cartItems = this.cartService.cartItems;
+        this.cartService.totalPrice.subscribe(data => this.subTotal =  Math.round(data * 100) / 100);
+        this.cartService.totalQuantity.subscribe(data => this.numItems = data);
+        this.cartService.calculateCartTotal();
+        this.calculateGrandTotal();
+    }
+
+    calculateGrandTotal(){
+        this.shipping = 14;
+        this.tax = this.subTotal * 3/100;
+        this.total = this.subTotal + this.shipping + this.tax;
+    }
+
+    decrementQuantity(quantity: number){
+        if (quantity > 1){
+            var num = new Number(quantity - 1);
+            document.querySelector(".num")!.innerHTML = num.toString();
+        } 
+      }
+    
+    incrementQuantity(quantity: number){
+        var num = new Number(quantity + 1);
+        document.querySelector(".num")!.innerHTML = num.toString();
+    }
+
+    removeItem(theItem: CartItem){
+        let indexToRemove: number = -1;
+        let counter: number = 0;
+        for (let item of this.cartItems){
+            if (item.id === theItem.id){
+                indexToRemove = counter;
+                break;
+            }
+            counter++;
+        }
+        if (indexToRemove > -1){
+            console.log(indexToRemove);
+            this.cartService.cartItems.splice(indexToRemove, 1);
+            this.cartItems = this.cartService.cartItems;
+            this.cartService.calculateCartTotal();
+            this.calculateGrandTotal();
+        }
+    }
+}
