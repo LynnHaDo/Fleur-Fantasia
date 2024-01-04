@@ -1,0 +1,33 @@
+<h4>Order summary</h4>
+<hr />
+<div class="row summary" style="align-items: center">
+  <div class="col-md-9">
+    <h5>Subtotal ({{ numItems }} items)</h5>
+  </div>
+  <div class="col-md-3">
+    <p>{{ subTotal | currency : "USD" }}</p>
+  </div>
+</div>
+<hr />
+<div class="row summary">
+  <div class="col-md-9"><h5>Shipping</h5></div>
+  <div class="col-md-3">
+    <p>{{ shipping | currency : "USD" }}</p>
+  </div>
+</div>
+<hr />
+<div class="row summary">
+  <div class="col-md-9"><h5>Tax (3%)</h5></div>
+  <div class="col-md-3">
+    <p>{{ tax | currency : "USD" }}</p>
+  </div>
+</div>
+<hr />
+<div class="row summary">
+  <div class="col-md-9"><h5>Total</h5></div>
+  <div class="col-md-3">
+    <h5 style="color: rgb(128, 191, 173)">
+      {{ total | currency : "USD" }}
+    </h5>
+  </div>
+</div>

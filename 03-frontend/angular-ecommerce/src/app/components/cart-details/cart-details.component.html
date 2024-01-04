@@ -3,8 +3,8 @@
     <div class="row" *ngIf="numItems > 0">
       <div class="col-lg-9">
         <h3>Your cart</h3>
-        <div class="row">
-          <div class="col-md-6 item-box" *ngFor="let item of cartItems">
+        <div class="row mb-5">
+          <div class="col-md-6 item-box mb-3" *ngFor="let item of cartItems">
             <div class="row">
               <div class="col-md-6">
                 <a href="/products/{{ item.id }}">
@@ -24,7 +24,7 @@
                   <h5>Qty</h5>
                   <div class="quantity">
                     <button
-                      (click)="decrementQuantity(+quantity.innerHTML)"
+                      (click)="decrementQuantity(item)"
                       id="decrement"
                       type="button"
                     >
@@ -32,7 +32,7 @@
                     </button>
                     <span class="num" #quantity>{{ item.quantity }}</span>
                     <button
-                      (click)="incrementQuantity(+quantity.innerHTML)"
+                      (click)="incrementQuantity(item)"
                       id="increment"
                       type="button"
                     >
@@ -40,44 +40,22 @@
                     </button>
                   </div>
                 </div>
-                <button class = "rm-item" (click)="removeItem(item)">Remove</button>
+                <button class = "rm-item" (click)="removeItem(item)"><h5>Remove</h5></button>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-3">
-        <h4>Order summary</h4>
-
-        <hr />
-        <div class="row summary" style="align-items: center">
-          <div class="col-md-9">
-            <h5>Subtotal ({{ numItems }} items)</h5>
-          </div>
-          <div class="col-md-3">
-            <p>{{ subTotal | currency : "USD" }}</p>
-          </div>
-        </div>
-        <hr />
+        <app-order-summary  [numItems]="numItems" 
+                            [subTotal]="subTotal"
+                            [shipping]="shipping"
+                            [tax]="tax"
+                            [total]="total"></app-order-summary>
         <div class="row">
-          <div class="col-md-9"><h5>Shipping</h5></div>
-          <div class="col-md-3">
-            <p>{{ shipping | currency : "USD" }}</p>
-          </div>
-        </div>
-        <hr />
-        <div class="row">
-          <div class="col-md-9"><h5>Tax (3%)</h5></div>
-          <div class="col-md-3">
-            <p>{{ tax | currency : "USD" }}</p>
-          </div>
-        </div>
-        <hr />
-        <div class="row">
-          <div class="col-md-9"><h5>Total</h5></div>
-          <div class="col-md-3">
-            <h5 style="color: #f29d7e">{{ total | currency : "USD" }}</h5>
-          </div>
+            <div style = "width: 100%">
+            <button class = "primary-btn checkout-btn" routerLink="/checkout"><h5>Go to Checkout</h5><img src="../../../assets/images/fleur-icon.png" /></button>          
+            </div>
         </div>
       </div>
       <a routerLink="/products" class="mt-5">Back to Shopping</a>

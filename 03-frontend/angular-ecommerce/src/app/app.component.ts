@@ -1,16 +1,26 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { fadeInAnimation, fadeOutAnimation } from 'angular-animations'
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  animations: [
+    fadeInAnimation({delay: 0}),
+    fadeOutAnimation({delay: 800})
+]
 })
 export class AppComponent {
   title = 'angular-ecommerce';
+  showLoader: boolean = true;
+  opacity = 1;
+  display = "block";
 
   constructor(private router: Router) {}
 
+  // Preventing default behavior of clicking on 'a' tags
   @HostListener('window:click', ['$event'])
   onClick(e: any) {
     const path = e.composedPath() as Array<any>;
@@ -25,5 +35,18 @@ export class AppComponent {
 
       e.preventDefault();
     }
+  }
+
+  // Adding effects (Source: https://stackblitz.com/edit/angular-animations-delayed-fadein-fadeout)
+  @HostListener('window:DOMContentLoaded', ['$event'])
+  onDOMContentLoaded(e: any) {
+    this.showLoader = false;
+    this.opacity = 1;
+    this.display = "block"
+  }
+
+  fadeOutDone(){
+    this.opacity = 0;
+    this.display = "none"
   }
 }

@@ -1,0 +1,128 @@
+<div class = "row">
+    <div class = "col">
+        <div class = "input-area review-section mt-3 mb-3">
+            <h5>Information</h5>
+            <p>{{ firstName + ' ' + lastName }}</p>
+            <p>{{ email }}</p>
+            <p>{{ phoneNumber }}</p>
+        </div>
+    </div>
+</div>
+<form [formGroup]="shippingFormGroup" (ngSubmit)="onSubmit()">
+  <!-- Shipping address -->
+  <h5 class="mt-3">Shipping address</h5>
+  <div formGroupName="shipping">
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-3 mt-3">
+          <h5>Country</h5>
+          <select formControlName="country">
+            <option>To Do</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-3 mt-3">
+          <h5>Street</h5>
+          <input formControlName="street" type="text" />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-3 mt-3">
+          <h5>City</h5>
+          <input formControlName="city" type="text" />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-3 mt-3">
+          <h5>State</h5>
+          <select formControlName="state">
+            <option>To Do</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-3 mt-3">
+          <h5>Zip Code</h5>
+          <input formControlName="zipcode" type="text" />
+        </div>
+      </div>
+    </div>
+    <div class = "row mt-3">
+        <div class = "col">
+            <label style = "display: flex; align-items: center">
+                <input type="checkbox" class = "form-check-input mt-0" (change)="copyShippingtoBilling($event)"/>
+                <span style = "margin-left: 15px;">Billing address same as shipping address</span>
+            </label>
+        </div>
+    </div>
+  </div>
+
+  <!-- Billing address -->
+  <div>
+    <h5 class="mt-5">Billing address</h5>
+    <div formGroupName="billing">
+        <div class="row mt-3">
+            <div class="col">
+              <div class="input-area mb-3 mt-3">
+                <h5>Country</h5>
+                <select formControlName="country">
+                  <option>To Do</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="input-area mb-3 mt-3">
+                <h5>Street</h5>
+                <input formControlName="street" type="text" />
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="input-area mb-3 mt-3">
+                <h5>City</h5>
+                <input formControlName="city" type="text" />
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="input-area mb-3 mt-3">
+                <h5>State</h5>
+                <select formControlName="state">
+                  <option>To Do</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="input-area mb-3 mt-3">
+                <h5>Zip Code</h5>
+                <input formControlName="zipcode" type="text" />
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <button type="submit" class="primary-btn checkout-btn">
+        <h5>Continue to Payment</h5>
+        <img src="../../../assets/images/fleur-icon.png" />
+      </button>
+    </div>
+  </div>
+</form>
+<button (click)="backToInfo()" class="mt-5"><h5 style = "text-decoration: underline">Back to Information</h5></button>

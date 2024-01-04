@@ -1,3 +1,7 @@
+<div id="preloader" [@fadeIn]="showLoader" [@fadeOut]="!showLoader" (@fadeOut.done)="fadeOutDone()" [style.opacity]="opacity" [style.display]="display">
+    <div class="loader-img"><img src="../assets/images/fleur-icon.png" /></div>
+    <h5>Loading...</h5>
+</div>
 <div class="page-wrapper">
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar d-none d-lg-block">

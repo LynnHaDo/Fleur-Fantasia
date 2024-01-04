@@ -21,30 +21,29 @@ export class CartDetailsComponent implements OnInit {
 
     constructor(private cartService: CartService){}
 
-    displayCart(){        
+    displayCart(){
         this.cartItems = this.cartService.cartItems;
         this.cartService.totalPrice.subscribe(data => this.subTotal =  Math.round(data * 100) / 100);
         this.cartService.totalQuantity.subscribe(data => this.numItems = data);
+        this.cartService.shippingPrice.subscribe(data => this.shipping = data);
+        this.cartService.taxPrice.subscribe(data => this.tax = Math.round(data * 100) / 100);
+        this.cartService.grandPrice.subscribe(data => this.total = Math.round(data * 100) / 100);
         this.cartService.calculateCartTotal();
-        this.calculateGrandTotal();
     }
 
-    calculateGrandTotal(){
-        this.shipping = 14;
-        this.tax = this.subTotal * 3/100;
-        this.total = this.subTotal + this.shipping + this.tax;
-    }
-
-    decrementQuantity(quantity: number){
-        if (quantity > 1){
-            var num = new Number(quantity - 1);
-            document.querySelector(".num")!.innerHTML = num.toString();
+    decrementQuantity(theItem: CartItem){
+        if (theItem.quantity > 1){
+            theItem.quantity--;
+            this.displayCart();
         } 
+        else if (theItem.quantity == 1){
+            this.removeItem(theItem);
+        }
       }
     
-    incrementQuantity(quantity: number){
-        var num = new Number(quantity + 1);
-        document.querySelector(".num")!.innerHTML = num.toString();
+    incrementQuantity(theItem: CartItem){
+        theItem.quantity++;
+        this.displayCart();
     }
 
     removeItem(theItem: CartItem){
@@ -58,11 +57,8 @@ export class CartDetailsComponent implements OnInit {
             counter++;
         }
         if (indexToRemove > -1){
-            console.log(indexToRemove);
             this.cartService.cartItems.splice(indexToRemove, 1);
-            this.cartItems = this.cartService.cartItems;
-            this.cartService.calculateCartTotal();
-            this.calculateGrandTotal();
+            this.displayCart();
         }
     }
 }

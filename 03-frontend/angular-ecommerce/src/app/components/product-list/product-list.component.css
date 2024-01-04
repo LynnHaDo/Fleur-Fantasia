@@ -14,7 +14,7 @@
 }
 
 .product .product_desc {
-    color: rgb(128, 191, 173)
+    color: var(--light-green)
 }
 
 .page-size {
@@ -31,8 +31,8 @@
 
 .page-size select {
   background-color: transparent;
-  border-color:#e5e5e5;
-  border-radius: 2px;
+  border-color:var(--border-color);
+  border-radius: var(--btn-radius);
   transition: all .5s ease;
   position: relative;
   font-size: 14px;
@@ -41,4 +41,5 @@
   text-align: left;
   cursor: pointer;
   padding: 0 15px;
+  outline: 0
 }

@@ -1,0 +1,19 @@
+.checkout-nav-item {
+    padding-right: 0
+}
+
+.checkout-nav-item h4 {
+    margin-bottom: 0;
+}
+
+.checkout-nav-item.inactive h4 {
+    color: #757575
+}
+
+.item-detail {
+    margin-right: 0;
+}
+
+.item-detail h6, .item-detail p {
+    margin-bottom: 0.5rem;
+}

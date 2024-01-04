@@ -13,7 +13,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-
+<img align="center" src="03-frontend/angular-ecommerce/src/assets/images/fleur-icon.png" height="40px">
+<br />
 <h3 align="center">Fleur Fantasia</h3>
 
   <p align="center">
@@ -43,14 +44,14 @@
 
 This project is still in progress 🔜 
 
-<div>
-    <a href="https://www.loom.com/share/1fb95ee10e6d41fc8d8b9ac58a7c4792">
-      <p>Fleur Fantasia - 31 December 2023 - Watch Video</p>
+<div style = "text-align: center">
+    <a href="https://www.loom.com/share/2d3e1dbc874f43418ad41214590a6fe5">
+      <p>Fleur Fantasia - 4 January 2024 - Watch Video</p>
     </a>
-    <a href="https://www.loom.com/share/1fb95ee10e6d41fc8d8b9ac58a7c4792">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/1fb95ee10e6d41fc8d8b9ac58a7c4792-with-play.gif">
+    <a href="https://www.loom.com/share/2d3e1dbc874f43418ad41214590a6fe5">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/2d3e1dbc874f43418ad41214590a6fe5-with-play.gif">
     </a>
-</div>
+  </div>
 
 <br>
 
@@ -67,6 +68,8 @@ This project is still in progress 🔜
 - [x] Pagination
 - [ ] Check out
     - [x] Add/Remove/Modify items in cart
+    - [x] Build reactive form controls layout and process inputs on the front-end
+    - [ ] Connect Angular with Spring Boot to send info to the databases
     - [ ] Credit card payment
 - [ ] Member registration
 - [ ] Add security

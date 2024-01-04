@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { CartItem } from '../common/cart-item';
 import { Subject } from 'rxjs';
 
+const spendingThreshold = 100;
+const standardShippingFee = 14;
+const taxPercent = 0.03;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,8 +14,11 @@ export class CartService {
     cartItems: CartItem[] = [];
     totalPrice: Subject<number> = new Subject<number>();
     totalQuantity: Subject<number> = new Subject<number>();
+    shippingPrice: Subject<number> = new Subject<number>();
+    taxPrice: Subject<number> = new Subject<number>();
+    grandPrice: Subject<number> = new Subject<number>();
 
-    constructor() { }
+    constructor() {}
 
     // Methods
     addToCart(theCartItem: CartItem, theQuantity: number){
@@ -43,10 +50,18 @@ export class CartService {
             totalQuantityVal += item.quantity;
         }
 
+        // Free shipping on orders above the spending threshold
+        let shippingPriceVal = totalPriceVal >= spendingThreshold? 0:standardShippingFee;
+        this.shippingPrice.next(shippingPriceVal);
+
+        // Calculate tax
+        this.taxPrice.next(totalPriceVal * taxPercent);
+
         // Update the total price and quantity values for all subscribers
         this.totalPrice.next(totalPriceVal);
         this.totalQuantity.next(totalQuantityVal);
-        this.logCartData(totalPriceVal, totalQuantityVal);
+        this.grandPrice.next(totalPriceVal * (1 + taxPercent) + shippingPriceVal);
+        //this.logCartData(totalPriceVal, totalQuantityVal);
     }
 
     logCartData(price: number, quantity: number){
