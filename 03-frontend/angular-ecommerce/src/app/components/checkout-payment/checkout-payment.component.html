@@ -14,7 +14,7 @@
       <h5>Delivery</h5>
       <div class="row">
         <div class="col-md-6">
-          <h6>Shipping address</h6>
+          <h6 class = "mt-2">Shipping address</h6>
           <p>{{ streetShipping }}</p>
           <p>{{ cityShipping }}</p>
           <p>
@@ -22,7 +22,7 @@
           </p>
         </div>
         <div class="col-md-6">
-          <h6>Billing address</h6>
+          <h6 class = "mt-2">Billing address</h6>
           <p>{{ streetBilling }}</p>
           <p>{{ cityBilling }}</p>
           <p>
@@ -33,61 +33,120 @@
     </div>
   </div>
 </div>
+
 <form [formGroup]="paymentFormGroup" (ngSubmit)="onSubmit()">
-  <!-- Shipping address -->
   <h5 class="mt-3">Payment</h5>
   <div class="row mt-3">
     <div class="col">
-      <div class="input-area mb-3 mt-3">
+      <div class="input-area mb-1 mt-3">
         <h5>Card type</h5>
         <select formControlName="cardType">
           <option>Visa</option>
           <option>Mastercard</option>
         </select>
       </div>
+      <div
+        *ngIf="cardType.invalid && (cardType.touched || cardType.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="cardType.errors?.['required']">
+          <p>Please select the type of the card</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col">
-      <div class="input-area mb-3 mt-3">
+      <div class="input-area mb-1 mt-3">
         <h5>Name on Card</h5>
         <input formControlName="nameOnCard" type="text" />
       </div>
+      <div
+        *ngIf="nameOnCard.invalid && (nameOnCard.touched || nameOnCard.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="nameOnCard.errors?.['required']">
+          <p>Please enter name on the card</p>
+        </div>
+        <div *ngIf="nameOnCard.errors?.['minlength'] || nameOnCard.errors?.['checkWhitespace']">
+            <p>Name on card must be at least 2 characters long</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-md-6">
-      <div class="input-area mb-3 mt-3">
+      <div class="input-area mb-1 mt-3">
         <h5>Card number</h5>
         <input formControlName="cardNumber" type="text" />
       </div>
+      <div
+        *ngIf="cardNumber.invalid && (cardNumber.touched || cardNumber.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="cardNumber.errors?.['required']">
+          <p>Please enter your card number</p>
+        </div>
+        <div *ngIf="cardNumber.errors?.['pattern']">
+          <p>Card number must be 16 characters long</p>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
-      <div class="input-area mb-3 mt-3">
+      <div class="input-area mb-1 mt-3">
         <h5>Security code</h5>
         <input formControlName="securityCode" type="text" />
       </div>
+      <div
+        *ngIf="securityCode.invalid && (securityCode.touched || securityCode.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="securityCode.errors?.['required']">
+          <p>Please enter your security number</p>
+        </div>
+        <div *ngIf="securityCode.errors?.['pattern']">
+          <p>Security number (CVV) must be 3 characters long</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-md-6">
-      <div class="input-area mb-3 mt-3">
+      <div class="input-area mb-1 mt-3">
         <h5>Expiration month</h5>
         <select formControlName="expirationMonth">
-            <option *ngFor="let month of months" value="month">{{ month }}</option>
+            <option *ngFor="let month of months" [ngValue]="month" [disabled]="disableMonth(month)">{{ month }}</option>
         </select>
+      </div>
+      <div
+        *ngIf="expirationMonth.invalid && (expirationMonth.touched || expirationMonth.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="expirationMonth.errors?.['required']">
+          <p>Please select expiration month</p>
+        </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="input-area mb-3 mt-3">
+      <div class="input-area mb-1 mt-3">
         <h5>Expiration year</h5>
-        <input formControlName="expirationYear" type="text" />
+        <select formControlName="expirationYear" #yearSelection (change)="displayMonths(yearSelection.value)">
+            <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+        </select>
+      </div>
+      <div
+        *ngIf="expirationYear.invalid && (expirationYear.touched || expirationYear.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="expirationYear.errors?.['required']">
+          <p>Please select expiration year</p>
+        </div>
       </div>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-md-6">
-      <button type="submit" class="primary-btn checkout-btn">
+      <button type="submit" class="primary-btn checkout-btn" [disabled]="paymentFormGroup.invalid">
         <h5>Submit</h5>
         <img src="../../../assets/images/fleur-icon.png" />
       </button>

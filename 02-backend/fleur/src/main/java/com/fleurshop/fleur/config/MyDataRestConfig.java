@@ -2,6 +2,8 @@ package com.fleurshop.fleur.config;
 
 import com.fleurshop.fleur.entity.Product;
 import com.fleurshop.fleur.entity.ProductCategory;
+import com.fleurshop.fleur.entity.Country;
+import com.fleurshop.fleur.entity.State;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -32,20 +34,34 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE, HttpMethod.PATCH};
 
         // disable HTTP methods for Product: PUT, POST, DELETE and PATCH
-        config.getExposureConfiguration()
-                .forDomainType(Product.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+        disableHttpMethods(Product.class, config, theUnsupportedActions);
 
         // disable HTTP methods for ProductCategory: PUT, POST, DELETE and PATCH
-        config.getExposureConfiguration()
-                .forDomainType(ProductCategory.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+        disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
+        
+        // disable HTTP methods for Country: PUT, POST, DELETE and PATCH
+        disableHttpMethods(Country.class, config, theUnsupportedActions);
+        
+        // disable HTTP methods for ProductCategory: PUT, POST, DELETE and PATCH
+        disableHttpMethods(State.class, config, theUnsupportedActions);
 
         // call an internal helper method
         exposeIds(config);
 
+    }
+
+    /**
+     * Disable certain methods in a class
+     * @param theClass class to disable unsupported methods
+     * @param config config of the repo
+     * @param theUnsupportedActions actions to disable
+     */
+    private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config,
+            HttpMethod[] theUnsupportedActions) {
+        config.getExposureConfiguration()
+                .forDomainType(theClass)
+                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
     }
 
     private void exposeIds(RepositoryRestConfiguration config) {

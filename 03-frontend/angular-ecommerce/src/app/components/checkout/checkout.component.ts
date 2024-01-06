@@ -35,11 +35,11 @@ export class CheckoutComponent implements OnInit {
 
     displayOrderSummary(){
         this.cartItems = this.cartService.cartItems;
-        this.cartService.totalPrice.subscribe(data => this.subTotal =  Math.round(data * 100) / 100);
-        this.cartService.totalQuantity.subscribe(data => this.numItems = data);
+        this.cartService.totalPrice.subscribe(data => {this.subTotal =  Math.round(data * 100) / 100;});
+        this.cartService.totalQuantity.subscribe(data => {this.numItems = data;});
         this.cartService.shippingPrice.subscribe(data => this.shipping = data);
         this.cartService.taxPrice.subscribe(data => this.tax = Math.round(data * 100) / 100);
-        this.cartService.grandPrice.subscribe(data => this.total = Math.round(data * 100) / 100);
+        this.cartService.grandPrice.subscribe(data => {this.total = Math.round(data * 100) / 100;});
         this.cartService.calculateCartTotal();
     }
 

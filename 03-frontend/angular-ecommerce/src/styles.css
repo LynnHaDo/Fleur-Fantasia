@@ -658,6 +658,16 @@ input:-webkit-autofill:active{
     border: 1px solid var(--border-color)
 }
 
+.error-message {
+    position: relative;
+    top: 5px;
+}
+.error-message p {
+    font-size: 12px;
+    color: #A62B1F;
+    margin-bottom: 0;
+}
+
 /* 
  * ----------------------------
  * Shopping Cart Details
@@ -739,6 +749,19 @@ button.checkout-btn {
 
 button.checkout-btn:hover {
     background-color: var(--light-green);
+    transition: 0.3s ease;
+}
+
+button.checkout-btn:disabled {
+    background-color: #e5e5e5;
+}
+
+button.checkout-btn:disabled h5 {
+    color: gray;
+}
+
+button.checkout-btn:disabled:hover img {
+    animation: none;
 }
 
 .checkout-btn h5 {

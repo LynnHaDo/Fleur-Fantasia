@@ -35,6 +35,7 @@ CREATE TABLE `customer` (
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -64,7 +65,7 @@ CREATE TABLE `orders` (
 --
 -- Table structure for table `order_items`
 --
-CREATE TABLE `order_item` (
+CREATE TABLE `ordersorder_item` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `image_url` varchar(255) DEFAULT NULL,
   `quantity` int DEFAULT NULL,

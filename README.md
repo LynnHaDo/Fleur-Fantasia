@@ -69,7 +69,7 @@ This project is still in progress 🔜
 - [ ] Check out
     - [x] Add/Remove/Modify items in cart
     - [x] Build reactive form controls layout and process inputs on the front-end
-    - [ ] Connect Angular with Spring Boot to send info to the databases
+    - [x] Connect Angular with Spring Boot to send info to the databases
     - [ ] Credit card payment
 - [ ] Member registration
 - [ ] Add security

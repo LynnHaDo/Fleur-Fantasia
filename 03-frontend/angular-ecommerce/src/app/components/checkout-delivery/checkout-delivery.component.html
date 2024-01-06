@@ -1,40 +1,232 @@
-<div class = "row">
-    <div class = "col">
-        <div class = "input-area review-section mt-3 mb-3">
-            <h5>Information</h5>
-            <p>{{ firstName + ' ' + lastName }}</p>
-            <p>{{ email }}</p>
-            <p>{{ phoneNumber }}</p>
-        </div>
+<div class="row">
+  <div class="col">
+    <div class="input-area review-section mt-3 mb-3">
+      <h5>Information</h5>
+      <p>{{ firstName + " " + lastName }}</p>
+      <p>{{ email }}</p>
+      <p>{{ phoneNumber }}</p>
     </div>
+  </div>
 </div>
+
 <form [formGroup]="shippingFormGroup" (ngSubmit)="onSubmit()">
   <!-- Shipping address -->
   <h5 class="mt-3">Shipping address</h5>
   <div formGroupName="shipping">
     <div class="row mt-3">
       <div class="col">
-        <div class="input-area mb-3 mt-3">
+        <div class="input-area mb-1 mt-3">
           <h5>Country</h5>
-          <select formControlName="country">
-            <option>To Do</option>
+          <select
+            formControlName="country"
+            (change)="handleCountryChange(theShippingCountry, 'shipping')"
+            #theShippingCountry
+          >
+            <option *ngFor="let country of countries" [ngValue]="country.code">
+              {{ country.name }}
+            </option>
           </select>
+        </div>
+        <div
+          *ngIf="
+            shippingAddressCountry.invalid &&
+            (shippingAddressCountry.touched || shippingAddressCountry.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="shippingAddressCountry.errors?.['required']">
+            <p>Please select the shipping country</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col">
-        <div class="input-area mb-3 mt-3">
+        <div class="input-area mb-1 mt-3">
           <h5>Street</h5>
           <input formControlName="street" type="text" />
         </div>
+        <div
+          *ngIf="
+            shippingAddressStreet.invalid &&
+            (shippingAddressStreet.touched || shippingAddressStreet.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="shippingAddressStreet.errors?.['required']">
+            <p>Please enter your street address</p>
+          </div>
+          <div
+            *ngIf="shippingAddressStreet.errors?.['checkWhitespace'] || shippingAddressStreet.errors?.['minlength']"
+          >
+            <p>Street address must be at least 2 characters long</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col">
-        <div class="input-area mb-3 mt-3">
+        <div class="input-area mb-1 mt-3">
           <h5>City</h5>
           <input formControlName="city" type="text" />
+        </div>
+        <div
+          *ngIf="
+            shippingAddressCity.invalid &&
+            (shippingAddressCity.touched || shippingAddressCity.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="shippingAddressCity.errors?.['required']">
+            <p>Please enter your city address</p>
+          </div>
+          <div
+            *ngIf="shippingAddressCity.errors?.['checkWhitespace'] || shippingAddressCity.errors?.['minlength']"
+          >
+            <p>City address must be at least 2 characters long</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-1 mt-3">
+          <h5>State</h5>
+          <select formControlName="state">
+            <option *ngFor="let state of statesShipping" [ngValue]="state.name">
+              {{ state.name }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            shippingAddressState.invalid &&
+            (shippingAddressState.touched || shippingAddressState.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="shippingAddressState.errors?.['required']">
+            <p>Please select the shipping state</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-1 mt-3">
+          <h5>Zip Code</h5>
+          <input formControlName="zipcode" type="text" />
+        </div>
+        <div
+          *ngIf="
+            shippingAddressZipcode.invalid &&
+            (shippingAddressZipcode.touched || shippingAddressZipcode.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="shippingAddressZipcode.errors?.['required']">
+            <p>Please enter your zip codes</p>
+          </div>
+          <div
+            *ngIf="shippingAddressZipcode.errors?.['checkWhitespace'] || shippingAddressZipcode.errors?.['minlength']"
+          >
+            <p>Zipcode must be at least 2 characters long</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <label style="display: flex; align-items: center">
+          <input
+            type="checkbox"
+            class="form-check-input mt-0"
+            (change)="copyShippingtoBilling($event)"
+          />
+          <span style="margin-left: 15px"
+            >Billing address same as shipping address</span
+          >
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Billing address -->
+  <h5 class="mt-5">Billing address</h5>
+  <div formGroupName="billing">
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-1 mt-3">
+          <h5>Country</h5>
+          <select
+            id="theBilling"
+            formControlName="country"
+            (change)="handleCountryChange(theBillingCountry, 'billing')"
+            #theBillingCountry
+          >
+            <option *ngFor="let country of countries" [ngValue]="country.code">
+              {{ country.name }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            billingAddressCountry.invalid &&
+            (billingAddressCountry.touched || billingAddressCountry.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="billingAddressCountry.errors?.['required']">
+            <p>Please select the billing country</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-1 mt-3">
+          <h5>Street</h5>
+          <input formControlName="street" type="text" />
+        </div>
+        <div
+          *ngIf="
+            billingAddressStreet.invalid &&
+            (billingAddressStreet.touched || billingAddressStreet.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="billingAddressStreet.errors?.['required']">
+            <p>Please enter your street address</p>
+          </div>
+          <div
+            *ngIf="billingAddressStreet.errors?.['checkWhitespace'] || billingAddressStreet.errors?.['minlength']"
+          >
+            <p>Street address must be at least 2 characters long</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="input-area mb-1 mt-3">
+          <h5>City</h5>
+          <input formControlName="city" type="text" />
+        </div>
+        <div
+          *ngIf="
+            billingAddressCity.invalid &&
+            (billingAddressCity.touched || billingAddressCity.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="billingAddressCity.errors?.['required']">
+            <p>Please enter your city address</p>
+          </div>
+          <div
+            *ngIf="billingAddressCity.errors?.['checkWhitespace'] || billingAddressCity.errors?.['minlength']"
+          >
+            <p>City address must be at least 2 characters long</p>
+          </div>
         </div>
       </div>
     </div>
@@ -43,86 +235,63 @@
         <div class="input-area mb-3 mt-3">
           <h5>State</h5>
           <select formControlName="state">
-            <option>To Do</option>
+            <option *ngFor="let state of statesBilling" [ngValue]="state.name">
+              {{ state.name }}
+            </option>
           </select>
+        </div>
+        <div
+          *ngIf="
+            billingAddressState.invalid &&
+            (billingAddressState.touched || billingAddressState.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="billingAddressState.errors?.['required']">
+            <p>Please select the billing state</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col">
-        <div class="input-area mb-3 mt-3">
+        <div class="input-area mb-1 mt-3">
           <h5>Zip Code</h5>
           <input formControlName="zipcode" type="text" />
         </div>
+        <div
+          *ngIf="
+            billingAddressZipcode.invalid &&
+            (billingAddressZipcode.touched || billingAddressZipcode.dirty)
+          "
+          class="error-message"
+        >
+          <div *ngIf="billingAddressZipcode.errors?.['required']">
+            <p>Please enter your zip codes</p>
+          </div>
+          <div
+            *ngIf="billingAddressZipcode.errors?.['checkWhitespace'] || billingAddressZipcode.errors?.['minlength']"
+          >
+            <p>Zipcode must be at least 2 characters long</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class = "row mt-3">
-        <div class = "col">
-            <label style = "display: flex; align-items: center">
-                <input type="checkbox" class = "form-check-input mt-0" (change)="copyShippingtoBilling($event)"/>
-                <span style = "margin-left: 15px;">Billing address same as shipping address</span>
-            </label>
-        </div>
-    </div>
-  </div>
-
-  <!-- Billing address -->
-  <div>
-    <h5 class="mt-5">Billing address</h5>
-    <div formGroupName="billing">
-        <div class="row mt-3">
-            <div class="col">
-              <div class="input-area mb-3 mt-3">
-                <h5>Country</h5>
-                <select formControlName="country">
-                  <option>To Do</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <div class="input-area mb-3 mt-3">
-                <h5>Street</h5>
-                <input formControlName="street" type="text" />
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <div class="input-area mb-3 mt-3">
-                <h5>City</h5>
-                <input formControlName="city" type="text" />
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <div class="input-area mb-3 mt-3">
-                <h5>State</h5>
-                <select formControlName="state">
-                  <option>To Do</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <div class="input-area mb-3 mt-3">
-                <h5>Zip Code</h5>
-                <input formControlName="zipcode" type="text" />
-              </div>
-            </div>
-          </div>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-md-6">
-      <button type="submit" class="primary-btn checkout-btn">
-        <h5>Continue to Payment</h5>
-        <img src="../../../assets/images/fleur-icon.png" />
-      </button>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <button
+          type="submit"
+          class="primary-btn checkout-btn"
+          [disabled]="shippingFormGroup.invalid"
+        >
+          <h5>Continue to Payment</h5>
+          <img src="../../../assets/images/fleur-icon.png" />
+        </button>
+      </div>
     </div>
   </div>
 </form>
-<button (click)="backToInfo()" class="mt-5"><h5 style = "text-decoration: underline">Back to Information</h5></button>
+
+<button (click)="backToInfo()" class="mt-5">
+  <h5 style="text-decoration: underline">Back to Information</h5>
+</button>

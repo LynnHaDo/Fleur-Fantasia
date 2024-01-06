@@ -6,22 +6,72 @@
           <h3>Checkout</h3>
           <div class="row mt-3">
             <div class="col-lg-2 text-center checkout-nav-item">
-              <h4>Information</h4>
+              <h4
+                [style.color]="
+                  startCheckout.getValue() &&
+                  !startDelivery.getValue() &&
+                  !startPayment.getValue()
+                    ? 'var(--dark-green)'
+                    : 'var(--border-color)'
+                "
+              >
+                Information
+              </h4>
             </div>
             <div class="col-lg-3"><hr /></div>
             <div class="col-lg-2 text-center checkout-nav-item">
-              <h4>Delivery</h4>
+              <h4
+                [style.color]="
+                  !startCheckout.getValue() &&
+                  startDelivery.getValue() &&
+                  !startPayment.getValue()
+                    ? 'var(--dark-green)'
+                    : 'var(--border-color)'
+                "
+              >
+                Delivery
+              </h4>
             </div>
             <div class="col-lg-3"><hr /></div>
             <div class="col-lg-2 text-center checkout-nav-item">
-              <h4>Payment</h4>
+              <h4
+                [style.color]="
+                  !startCheckout.getValue() &&
+                  !startDelivery.getValue() &&
+                  startPayment.getValue()
+                    ? 'var(--dark-green)'
+                    : 'var(--border-color)'
+                "
+              >
+                Payment
+              </h4>
             </div>
           </div>
         </div>
         <div class="row">
-          <app-checkout-info *ngIf = "startCheckout.getValue() && !startDelivery.getValue() && !startPayment.getValue()"></app-checkout-info>
-          <app-checkout-delivery *ngIf = "!startCheckout.getValue() && startDelivery.getValue() && !startPayment.getValue()"></app-checkout-delivery>
-          <app-checkout-payment *ngIf = "!startCheckout.getValue() && !startDelivery.getValue() && startPayment.getValue()"></app-checkout-payment>
+          <app-checkout-info
+            *ngIf="
+              startCheckout.getValue() &&
+              !startDelivery.getValue() &&
+              !startPayment.getValue()
+            "
+          ></app-checkout-info>
+          <app-checkout-delivery
+            *ngIf="
+              !startCheckout.getValue() &&
+              startDelivery.getValue() &&
+              !startPayment.getValue()
+            "
+          ></app-checkout-delivery>
+          <app-checkout-payment
+            *ngIf="
+              !startCheckout.getValue() &&
+              !startDelivery.getValue() &&
+              startPayment.getValue()
+            "
+            [numItems]="numItems"
+            [total]="total"
+          ></app-checkout-payment>
         </div>
       </div>
       <div class="col-lg-3 order-2">

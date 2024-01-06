@@ -1,41 +1,87 @@
 <form [formGroup]="infoFormGroup" (ngSubmit)="onSubmit()">
-      <div class="row mt-3">
-        <div class="col-md-6">
-          <div class="input-area mb-3 mt-3">
-            <h5>First name</h5>
-            <input formControlName="firstName" type="text" />
-          </div>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <div class="input-area mb-1 mt-3">
+        <h5>First name</h5>
+        <input formControlName="firstName" type="text" />
+      </div>
+      <div
+        *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="firstName.errors?.['required']">
+          <p>Please enter your first name</p>
         </div>
-        <div class="col-md-6">
-          <div class="input-area mb-3 mt-3">
-            <h5>Last name</h5>
-            <input formControlName="lastName" type="text" />
-          </div>
+        <div *ngIf="firstName.errors?.['checkWhitespace'] || firstName.errors?.['minlength']">
+          <p>First name must be at least 2 characters long</p>
         </div>
       </div>
-      <div class="row mt-3">
-        <div class = "col">
-            <div class="input-area mb-3 mt-3">
-                <h5>Email</h5>
-                <input formControlName="email" type="email" />
-              </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-area mb-1 mt-3">
+        <h5>Last name</h5>
+        <input formControlName="lastName" type="text" />
+      </div>
+      <div
+        *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="lastName.errors?.['required']">
+          <p>Please enter your last name</p>
+        </div>
+        <div *ngIf="lastName.errors?.['minlength'] || lastName.errors?.['checkWhitespace']">
+          <p>Last name must be at least 2 characters long</p>
         </div>
       </div>
-      <div class="row mt-3">
-        <div class = "col">
-            <div class="input-area mb-3 mt-3">
-                <h5>Phone</h5>
-                <input formControlName="phoneNumber" type="text" />
-            </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="input-area mb-1 mt-3">
+        <h5>Email</h5>
+        <input formControlName="email" type="email" />
+      </div>
+      <div
+        *ngIf="email.invalid && (email.touched || email.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="email.errors?.['required']">
+          <p>Please enter your email</p>
+        </div>
+        <div *ngIf="email.errors?.['pattern']">
+          <p>Email invalid</p>
         </div>
       </div>
-      <div class = "row mt-3">
-        <div class = "col-md-6">
-            <button type = "submit" class = "primary-btn checkout-btn">
-                <h5>Continue to Delivery</h5>
-                <img src="../../../assets/images/fleur-icon.png" />
-            </button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="input-area mb-1 mt-3">
+        <h5>Phone</h5>
+        <input formControlName="phoneNumber" type="text" />
+      </div>
+      <div
+        *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)"
+        class="error-message"
+      >
+        <div *ngIf="phoneNumber.errors?.['required']">
+          <p>Please enter your phone number</p>
+        </div>
+        <div *ngIf="phoneNumber.errors?.['pattern']">
+          <p>Phone number should be in this form: +XXXX XXX XXXX</p>
         </div>
       </div>
-  </form>
-  <a routerLink="/cart" class="mt-5"><h5 style = "text-decoration: underline">Back to Cart</h5></a>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <button type="submit" class="primary-btn checkout-btn" [disabled]="infoFormGroup.invalid">
+        <h5>Continue to Delivery</h5>
+        <img src="../../../assets/images/fleur-icon.png" />
+      </button>
+    </div>
+  </div>
+</form>
+<a routerLink="/cart" class="mt-5"
+  ><h5 style="text-decoration: underline">Back to Cart</h5></a
+>
