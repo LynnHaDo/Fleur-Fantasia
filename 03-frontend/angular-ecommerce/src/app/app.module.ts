@@ -30,7 +30,19 @@ import { CheckoutInfoComponent } from './components/checkout-info/checkout-info.
 import { CheckoutDeliveryComponent } from './components/checkout-delivery/checkout-delivery.component';
 import { CheckoutPaymentComponent } from './components/checkout-payment/checkout-payment.component';
 
+// Login related components
+import { LoginStatusComponent } from './components/login-status/login-status.component';
+import { LoginComponent } from './components/login/login.component';
+import { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG } from '@okta/okta-angular';
+import { OktaAuth } from '@okta/okta-auth-js';
+import fleurConfig from './config/fleur-config';
+
+const oktaConfig = fleurConfig.oidc;
+const oktaAuth = new OktaAuth(oktaConfig);
+
 const routes: Routes = [
+    {path: 'login/callback', component: OktaCallbackComponent},
+    {path: 'login', component: LoginComponent},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'cart', component: CartDetailsComponent},
     {path: 'products/:id', component: ProductDetailsComponent},
@@ -55,7 +67,9 @@ const routes: Routes = [
     OrderSummaryComponent,
     CheckoutInfoComponent,
     CheckoutDeliveryComponent,
-    CheckoutPaymentComponent
+    CheckoutPaymentComponent,
+    LoginComponent,
+    LoginStatusComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -63,9 +77,10 @@ const routes: Routes = [
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OktaAuthModule
   ],
-  providers: [ProductService, CartService, CheckoutService],
+  providers: [ProductService, CartService, CheckoutService, {provide: OKTA_CONFIG, useValue: {oktaAuth}}],
   bootstrap: [AppComponent]
 })
 

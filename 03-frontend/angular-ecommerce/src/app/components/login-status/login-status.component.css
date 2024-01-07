@@ -1,0 +1,51 @@
+.login-status-header {
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:-moz-box;
+    display:-ms-flexbox;
+    display:flex
+}
+.security-btn {
+    position:relative;
+    right:0;
+    min-width:95px;
+    color:#fff;
+    border:1px solid var(--dark-green);
+    -webkit-border-radius:var(--btn-radius);
+    -moz-border-radius:var(--btn-radius);
+    border-radius: var(--btn-radius);
+    background:var(--dark-green);
+    font-size:14px;
+}
+
+.security-btn:hover{
+    background:var(--light-green);
+    border:1px solid var(--light-green);
+}
+
+.security-btn>i{
+    color:#fff;
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
+    -o-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%)
+}
+
+.login-status-user-info {
+    line-height:43px;
+    border:1px solid var(--border-color);
+    font-size:14px;
+    color:#666;
+    padding:0 17px;
+    -webkit-border-radius:var(--btn-radius);
+    -moz-border-radius:var(--btn-radius);
+    border-radius:var(--btn-radius);
+    -webkit-transition:all .5s ease;
+    -o-transition:all .5s ease;
+    -moz-transition:all .5s ease;
+    transition:all .5s ease
+}

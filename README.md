@@ -96,9 +96,13 @@ I started this personal project with the aim to brush up my Java and Angular ski
 
 * [Spring Boot](https://spring.io/projects/spring-boot)
     * [Java](https://docs.oracle.com/en/java/)
+    * [Apache Maven](https://maven.apache.org/)
 * [Angular](https://angular.io/)
     * [TypeScript](https://www.typescriptlang.org/)
-* [Apache Maven](https://maven.apache.org/)
+* [Okta](https://developer.okta.com/code/angular/)
+    * Okta sign-in widget
+    * Okta Angular
+    * Okta Auth JS
 * [Stripe API](https://stripe.com/docs/api)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
