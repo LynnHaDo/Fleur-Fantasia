@@ -8,10 +8,8 @@ import lombok.Data;
 /**
  * Purchase response data transfer object
  */
+@Data
 public class PurchaseResponse {
-    private String orderTrackingNumber;
+    private final String orderTrackingNumber;
     
-    public PurchaseResponse(String trknumber) {
-        this.orderTrackingNumber = trknumber;
-    }
 }
