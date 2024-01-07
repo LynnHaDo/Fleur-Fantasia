@@ -69,10 +69,15 @@ This project is still in progress 🔜
 - [ ] Check out
     - [x] Add/Remove/Modify items in cart
     - [x] Build reactive form controls layout and process inputs on the front-end
-    - [x] Connect Angular with Spring Boot to send info to the databases
+    - [x] Connect Angular with Spring Boot to send order info to the database
     - [ ] Credit card payment
 - [ ] Member registration
+    - [x] Add Okta sign-in widget integration
+    - [ ] VIP member registration
 - [ ] Add security
+    - [ ] Handle browser refresh
+    - [ ] Secure HTTPs communcation - Frontend
+    - [ ] Secure HTTPs communication - Backend
 
 See the [open issues](https://github.com/LynnHaDo/Fleur-Fantasia/issues) for a full list of proposed features (and known issues).
 
