@@ -65,7 +65,7 @@ CREATE TABLE `orders` (
 --
 -- Table structure for table `order_items`
 --
-CREATE TABLE `ordersorder_item` (
+CREATE TABLE `order_item` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `image_url` varchar(255) DEFAULT NULL,
   `quantity` int DEFAULT NULL,

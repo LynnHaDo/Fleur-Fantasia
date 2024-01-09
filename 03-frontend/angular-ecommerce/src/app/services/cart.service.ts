@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../common/cart-item';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 const spendingThreshold = 100;
 const standardShippingFee = 14;
@@ -12,13 +12,22 @@ const taxPercent = 0.03;
 export class CartService {
     // Properties
     cartItems: CartItem[] = [];
-    totalPrice: Subject<number> = new Subject<number>();
-    totalQuantity: Subject<number> = new Subject<number>();
-    shippingPrice: Subject<number> = new Subject<number>();
-    taxPrice: Subject<number> = new Subject<number>();
-    grandPrice: Subject<number> = new Subject<number>();
+    totalPrice: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    totalQuantity: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    shippingPrice: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    taxPrice: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    grandPrice: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-    constructor() {}
+    // Storage
+    storage: Storage = sessionStorage;
+
+    constructor() {
+        let data = this.storage.getItem('cartItems');
+        if (data != null){
+            this.cartItems = JSON.parse(data);
+            this.calculateCartTotal();
+        } 
+    }
 
     // Methods
     addToCart(theCartItem: CartItem, theQuantity: number){
@@ -62,6 +71,7 @@ export class CartService {
         this.totalQuantity.next(totalQuantityVal);
         this.grandPrice.next(totalPriceVal * (1 + taxPercent) + shippingPriceVal);
         //this.logCartData(totalPriceVal, totalQuantityVal);
+        this.persistCartItems();
     }
 
     logCartData(price: number, quantity: number){
@@ -72,4 +82,7 @@ export class CartService {
         console.log("Total quantity: " + quantity);
     }
 
+    persistCartItems(){
+        this.storage.setItem('cartItems', JSON.stringify(this.cartItems))
+    }
 }

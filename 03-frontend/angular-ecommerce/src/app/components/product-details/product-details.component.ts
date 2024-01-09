@@ -14,7 +14,7 @@ import { CartItem } from 'src/app/common/cart-item';
     './product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
-  product!: Product;
+  product: Product = new Product();
 
   constructor(
     private productService: ProductService,

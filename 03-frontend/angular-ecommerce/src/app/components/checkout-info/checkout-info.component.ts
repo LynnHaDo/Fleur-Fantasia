@@ -14,6 +14,8 @@ import { FleurValidators } from 'src/app/validators/fleur-validators';
   styleUrl: './checkout-info.component.css',
 })
 export class CheckoutInfoComponent implements OnInit {
+    storage: Storage = sessionStorage;
+
   infoFormGroup: FormGroup = this.formBuilder.group({
     firstName: new FormControl('', [
       Validators.required,
@@ -36,6 +38,14 @@ export class CheckoutInfoComponent implements OnInit {
   });
 
   ngOnInit() {
+    var theEmail: string = '';
+
+    if (this.storage.getItem('userEmail') != null){
+        theEmail = this.storage.getItem('userEmail') as string;
+    } else {
+        theEmail = this.checkoutService.checkoutFormGroup.controls.information.value.email!;
+    }
+
     this.infoFormGroup.setValue({
       firstName:
         this.checkoutService.checkoutFormGroup.controls.information.value
@@ -43,12 +53,13 @@ export class CheckoutInfoComponent implements OnInit {
       lastName:
         this.checkoutService.checkoutFormGroup.controls.information.value
           .lastName,
-      email:
-        this.checkoutService.checkoutFormGroup.controls.information.value.email,
+      email: theEmail,
       phoneNumber:
         this.checkoutService.checkoutFormGroup.controls.information.value
           .phoneNumber,
     });
+
+
   }
 
   constructor(

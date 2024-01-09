@@ -6,16 +6,17 @@
     display:flex
 }
 .security-btn {
-    position:relative;
-    right:0;
     min-width:95px;
-    color:#fff;
     border:1px solid var(--dark-green);
     -webkit-border-radius:var(--btn-radius);
     -moz-border-radius:var(--btn-radius);
     border-radius: var(--btn-radius);
-    background:var(--dark-green);
-    font-size:14px;
+    background:transparent;
+    display: flex;
+    align-items: center;
+    height: 43px;
+    justify-content: center;
+    margin-left: 10px;
 }
 
 .security-btn:hover{
@@ -23,16 +24,17 @@
     border:1px solid var(--light-green);
 }
 
-.security-btn>i{
-    color:#fff;
-    position:absolute;
-    top:50%;
-    left:50%;
-    -webkit-transform:translate(-50%,-50%);
-    -moz-transform:translate(-50%,-50%);
-    -ms-transform:translate(-50%,-50%);
-    -o-transform:translate(-50%,-50%);
-    transform:translate(-50%,-50%)
+.security-btn p {
+    display: block;
+    margin-bottom: 0;
+}
+
+.security-btn i {
+    margin-left: 5px;
+}
+
+.security-btn>i, .security-btn>p{
+    color:var(--dark-green);
 }
 
 .login-status-user-info {

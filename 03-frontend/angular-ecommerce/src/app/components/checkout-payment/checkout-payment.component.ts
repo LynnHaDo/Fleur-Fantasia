@@ -142,7 +142,16 @@ export class CheckoutPaymentComponent implements OnInit {
                     alert(`There was an error: ${error.message}`)
                 }
             });
+
+            this.resetCheckoutStatus();
+            this.resetCart();
         }
+    }
+
+    resetCheckoutStatus(){
+        this.checkoutService.startCheckout.next(true);
+        this.checkoutService.startDelivery.next(false);
+        this.checkoutService.startPayment.next(false);
     }
 
     resetCart(){

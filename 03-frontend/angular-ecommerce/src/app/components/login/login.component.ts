@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { OKTA_AUTH } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
@@ -10,10 +11,9 @@ import fleurConfig from 'src/app/config/fleur-config';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-    
     oktaSignin: any;
 
-    constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth){
+    constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, @Inject(DOCUMENT) document: Document){
         this.oktaSignin = new OktaSignIn({
             logo: 'assets/images/fleur-icon.png',
             baseUrl: fleurConfig.oidc.issuer.split('/oauth2')[0],

@@ -14,6 +14,6 @@ import java.util.List;
 /**
  * Country JPA Repo
  */
-@CrossOrigin("http://localhost:4200")
+
 @RepositoryRestResource(collectionResourceRel = "countries", path = "countries")
 public interface CountryRepository extends JpaRepository<Country, Integer>{}

@@ -1,9 +1,9 @@
 // Modules
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -33,14 +33,18 @@ import { CheckoutPaymentComponent } from './components/checkout-payment/checkout
 // Login related components
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 import { LoginComponent } from './components/login/login.component';
-import { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG } from '@okta/okta-angular';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { MemberComponent } from './components/member/member.component';
+import { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG, OktaAuthGuard } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
-import fleurConfig from './config/fleur-config';
 
+import fleurConfig from './config/fleur-config';
 const oktaConfig = fleurConfig.oidc;
 const oktaAuth = new OktaAuth(oktaConfig);
 
 const routes: Routes = [
+    {path: 'order-history', component: OrderHistoryComponent, canActivate: [OktaAuthGuard], data: {onAuthRequired: sendToLoginPage}},
+    {path: 'member', component: MemberComponent, canActivate: [OktaAuthGuard], data: {onAuthRequired: sendToLoginPage}},
     {path: 'login/callback', component: OktaCallbackComponent},
     {path: 'login', component: LoginComponent},
     {path: 'checkout', component: CheckoutComponent},
@@ -70,6 +74,8 @@ const routes: Routes = [
     CheckoutPaymentComponent,
     LoginComponent,
     LoginStatusComponent,
+    MemberComponent,
+    OrderHistoryComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -85,3 +91,12 @@ const routes: Routes = [
 })
 
 export class AppModule { }
+
+function sendToLoginPage(oktaAuth: OktaAuth, injector: Injector): void {
+    // Access the router service
+    const router = injector.get(Router);
+
+    // Navigate to login page
+    router.navigate(['/login']);
+}
+

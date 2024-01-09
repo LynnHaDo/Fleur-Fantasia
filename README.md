@@ -45,11 +45,11 @@
 This project is still in progress 🔜 
 
 <div style = "text-align: center">
-    <a href="https://www.loom.com/share/2d3e1dbc874f43418ad41214590a6fe5">
-      <p>Fleur Fantasia - 4 January 2024 - Watch Video</p>
+    <a href="https://www.loom.com/share/98a46a326c3f4ed7b70c4d1a96daa6fb">
+      <p>Fleur Fantasia - 8 January 2024 - Watch Video</p>
     </a>
-    <a href="https://www.loom.com/share/2d3e1dbc874f43418ad41214590a6fe5">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/2d3e1dbc874f43418ad41214590a6fe5-with-play.gif">
+    <a href="https://www.loom.com/share/98a46a326c3f4ed7b70c4d1a96daa6fb">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/98a46a326c3f4ed7b70c4d1a96daa6fb-with-play.gif">
     </a>
   </div>
 
@@ -71,11 +71,13 @@ This project is still in progress 🔜
     - [x] Build reactive form controls layout and process inputs on the front-end
     - [x] Connect Angular with Spring Boot to send order info to the database
     - [ ] Credit card payment
-- [ ] Member registration
+- [x] Member registration
     - [x] Add Okta sign-in widget integration
-    - [ ] VIP member registration
+    - [x] VIP member registration
+    - [x] Track order history by customer email
 - [ ] Add security
-    - [ ] Handle browser refresh
+    - [x] Handle browser refresh
+    - [x] Block API access to customer information
     - [ ] Secure HTTPs communcation - Frontend
     - [ ] Secure HTTPs communication - Backend
 

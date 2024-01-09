@@ -4,8 +4,11 @@ import com.fleurshop.fleur.entity.Product;
 import com.fleurshop.fleur.entity.ProductCategory;
 import com.fleurshop.fleur.entity.Country;
 import com.fleurshop.fleur.entity.State;
+import com.fleurshop.fleur.entity.Order;
+import com.fleurshop.fleur.entity.OrderItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -22,6 +25,10 @@ import java.util.Set;
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     private EntityManager entityManager;
+    
+    
+    @Value("${allowed.origins}")
+    private String[] theAllowedOrigins;
 
     @Autowired
     public MyDataRestConfig(EntityManager theEntityManager) {
@@ -44,9 +51,16 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         
         // disable HTTP methods for ProductCategory: PUT, POST, DELETE and PATCH
         disableHttpMethods(State.class, config, theUnsupportedActions);
+        
+        disableHttpMethods(Order.class, config, theUnsupportedActions);
 
+        disableHttpMethods(OrderItem.class, config, theUnsupportedActions);
+        
         // call an internal helper method
         exposeIds(config);
+        
+        // define the allowed origins
+        cors.addMapping(config.getBasePath() + "/**").allowedOrigins(this.theAllowedOrigins);
 
     }
 

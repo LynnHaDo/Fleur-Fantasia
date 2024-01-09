@@ -49,6 +49,4 @@ export class AppComponent {
     this.opacity = 0;
     this.display = "none"
   }
-
-  
 }

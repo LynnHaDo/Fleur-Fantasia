@@ -202,7 +202,7 @@ aside.menu-sidebar.d-none.d-lg-block.clr{
     right:0;
     left:200px;
     height:75px;
-    z-index:99999999;
+    z-index:20;
     border-bottom: 1px solid var(--border-color);
     /* From https://css.glass */
     background: rgba(229, 229, 229, 0.21);
