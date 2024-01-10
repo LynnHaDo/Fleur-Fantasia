@@ -4,6 +4,6 @@
   </div>
   <button *ngIf="!isAuthenticated" routerLink="/login" class = "security-btn"><p>Log in</p><i class="fa-solid fa-right-to-bracket"></i></button>
   <button *ngIf="isAuthenticated" (click)="logOut()" class = "security-btn"><p>Log out</p><i class="fa-solid fa-right-from-bracket"></i></button>
-  <button class = "security-btn" routerLink="/member"><p>Member</p></button>
-  <button class = "security-btn" routerLink="/order-history"><p>Orders</p></button>
+  <button *ngIf="isAuthenticated" class = "security-btn" routerLink="/member"><p>Member</p></button>
+  <button *ngIf="isAuthenticated" class = "security-btn" routerLink="/order-history"><p>Orders</p></button>
 </div>

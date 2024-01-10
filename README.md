@@ -75,11 +75,11 @@ This project is still in progress 🔜
     - [x] Add Okta sign-in widget integration
     - [x] VIP member registration
     - [x] Track order history by customer email
-- [ ] Add security
+- [x] Add security
     - [x] Handle browser refresh
     - [x] Block API access to customer information
-    - [ ] Secure HTTPs communcation - Frontend
-    - [ ] Secure HTTPs communication - Backend
+    - [x] Secure HTTPs communcation - Frontend
+    - [x] Secure HTTPs communication - Backend
 
 See the [open issues](https://github.com/LynnHaDo/Fleur-Fantasia/issues) for a full list of proposed features (and known issues).
 

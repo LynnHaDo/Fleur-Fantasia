@@ -2,7 +2,7 @@
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import { CartService } from './services/cart.service';
 import { CheckoutService } from './services/checkout.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 // Main app components
 import { AppComponent } from './app.component';
@@ -86,7 +87,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     OktaAuthModule
   ],
-  providers: [ProductService, CartService, CheckoutService, {provide: OKTA_CONFIG, useValue: {oktaAuth}}],
+  providers:[ProductService, CartService, CheckoutService, 
+            {provide: OKTA_CONFIG, useValue: {oktaAuth}},
+            {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+            ],
   bootstrap: [AppComponent]
 })
 
