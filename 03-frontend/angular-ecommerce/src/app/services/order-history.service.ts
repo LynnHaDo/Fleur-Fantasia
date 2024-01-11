@@ -5,13 +5,15 @@ import { OrderHistory } from '../common/order-history';
 import { Observable, map } from 'rxjs';
 import { OrderHistoryItem } from '../common/order-history-item';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class OrderHistoryService {
   orderHistoryItems!: OrderHistory[];
-  ordersUrl: string = 'http://localhost:8080/api/orders';
-  orderItemsUrl: string = 'http://localhost:8080/api/order-items';
+  ordersUrl: string = `${environment.fleurShopAPIUrl}/orders`;
+  orderItemsUrl: string = `${environment.fleurShopAPIUrl}/order-items`;
 
   constructor(private httpClient: HttpClient) {}
 

@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, Observable, map} from 'rxjs';
 import { Country } from '../common/country';
 import { HttpClient } from '@angular/common/http';
 import { State } from '../common/state';
 import { Purchase } from '../common/purchase';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CheckoutService {
-  private countriesUrl = 'http://localhost:8080/api/countries';
-  private statesUrl = 'http://localhost:8080/api/states';
-  private purchaseUrl = "http://localhost:8080/api/checkout/purchase";
+  private countriesUrl = `${environment.fleurShopAPIUrl}/countries`;
+  private statesUrl = `${environment.fleurShopAPIUrl}/states`;
+  private purchaseUrl = `${environment.fleurShopAPIUrl}/checkout/purchase`;
 
   startCheckout: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   startPayment: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
