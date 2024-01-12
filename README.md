@@ -27,6 +27,9 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
+      <a href="#demo">Demo</a>
+    </li>
+    <li>
       <a href="#features">Features</a>
     </li>
     <li>
@@ -38,6 +41,29 @@
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
+
+<!-- Demo -->
+## Demo
+
+Currently I am working on deploying the project so stay tuned 😸
+
+<div>
+    <a href="https://www.loom.com/share/306696632cf64ad886aec0a073bc11ec">
+      <p>Basic functionalities</p>
+    </a>
+    <a href="https://www.loom.com/share/306696632cf64ad886aec0a073bc11ec">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/306696632cf64ad886aec0a073bc11ec-with-play.gif">
+    </a>
+</div>
+
+<div>
+    <a href="https://www.loom.com/share/3e03e5b7618143c0828fe01f2712c223">
+      <p>Payments received in Stripe</p>
+    </a>
+    <a href="https://www.loom.com/share/3e03e5b7618143c0828fe01f2712c223">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/3e03e5b7618143c0828fe01f2712c223-with-play.gif">
+    </a>
+</div>
 
 <!-- Features -->
 ## Features
