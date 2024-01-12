@@ -5,7 +5,8 @@ import { Country } from '../common/country';
 import { HttpClient } from '@angular/common/http';
 import { State } from '../common/state';
 import { Purchase } from '../common/purchase';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
+import { PaymentInfo } from '../common/payment-info';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class CheckoutService {
   private countriesUrl = `${environment.fleurShopAPIUrl}/countries`;
   private statesUrl = `${environment.fleurShopAPIUrl}/states`;
   private purchaseUrl = `${environment.fleurShopAPIUrl}/checkout/purchase`;
+  private paymentIntentUrl = `${environment.fleurShopAPIUrl}/checkout/payment-intent`;
 
   startCheckout: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   startPayment: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -42,12 +44,7 @@ export class CheckoutService {
       zipcode: [''],
     }),
     payment: this.formBuilder.group({
-      cardType: [''],
-      nameOnCard: [''],
-      cardNumber: [''],
-      securityCode: [''],
-      expirationMonth: [''],
-      expirationYear: [''],
+      
     }),
   });
 
@@ -72,6 +69,10 @@ export class CheckoutService {
 
   placeOrder(purchase: Purchase): Observable<any>{
     return this.httpClient.post<Purchase>(this.purchaseUrl, purchase);
+  }
+
+  createPaymentIntent(paymentInfo: PaymentInfo): Observable<any>{
+    return this.httpClient.post<PaymentInfo>(this.paymentIntentUrl, paymentInfo);
   }
 
   getCountries(): Observable<Country[]> {

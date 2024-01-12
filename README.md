@@ -18,7 +18,7 @@
 <h3 align="center">Fleur Fantasia</h3>
 
   <p align="center">
-    Web application using Spring Boot framework and Angular frontend
+    Full-stack Web application using Spring Boot framework and Angular frontend
   </p>
 </div>
 
@@ -27,7 +27,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#updates">Updates</a>
+      <a href="#features">Features</a>
     </li>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -39,21 +39,8 @@
   </ol>
 </details>
 
-<!-- UPDATES -->
-## Updates 
-
-This project is still in progress 🔜 
-
-<div style = "text-align: center">
-    <a href="https://www.loom.com/share/98a46a326c3f4ed7b70c4d1a96daa6fb">
-      <p>Fleur Fantasia - 8 January 2024 - Watch Video</p>
-    </a>
-    <a href="https://www.loom.com/share/98a46a326c3f4ed7b70c4d1a96daa6fb">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/98a46a326c3f4ed7b70c4d1a96daa6fb-with-play.gif">
-    </a>
-  </div>
-
-<br>
+<!-- Features -->
+## Features
 
 - [x] Add SQL databases 
 - [x] Add Spring Boot backend (enables connection with databases)
@@ -66,11 +53,11 @@ This project is still in progress 🔜
     - [x] Search by keyword
 - [x] Product Detail View
 - [x] Pagination
-- [ ] Check out
+- [x] Check out
     - [x] Add/Remove/Modify items in cart
     - [x] Build reactive form controls layout and process inputs on the front-end
     - [x] Connect Angular with Spring Boot to send order info to the database
-    - [ ] Credit card payment
+    - [x] Credit card payment - Email receipt to customer
 - [x] Member registration
     - [x] Add Okta sign-in widget integration
     - [x] VIP member registration
@@ -86,15 +73,13 @@ See the [open issues](https://github.com/LynnHaDo/Fleur-Fantasia/issues) for a f
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About The Project (Updates 01/12/24)
 
-In short, Fleur Fantasia is a full-stack e-commerce web app that allows users to browse different flower options. 
+In short, Fleur Fantasia is a full-stack e-commerce web app that allows users to browse and purchase different flower/plant options. 
 
 - Like other common e-commerce applications, it supports filtering items, adding items to cart, checking out, etc with secure HTTPS communication. The app also supports credit card payment processing using Stripe API. 
 
-- Unlike other common e-commerce applications, it also provides AI-powered tools to classify and detect different flower types. 
-
-I started this personal project with the aim to brush up my Java and Angular skills, and also to learn the Spring framework. In addition to that, as a person interested in using cutting-edge computer vision tools, I thought integrating deep learning models in this project would be a cool twist to a common e-commerce app! 
+- Unlike other common e-commerce applications, it also provides AI-powered tools to classify and detect different flower types. However, after considering the fact that the scope of the project is pretty big, I want to divide this feature into a different project!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
