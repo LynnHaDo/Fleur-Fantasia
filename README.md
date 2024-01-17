@@ -45,7 +45,7 @@
 <!-- Demo -->
 ## Demo
 
-Currently I am working on deploying the project so stay tuned 😸
+The AWS-deployed website is here: https://d10ywaww18btws.cloudfront.net
 
 <div>
     <a href="https://www.loom.com/share/306696632cf64ad886aec0a073bc11ec">
@@ -117,11 +117,13 @@ In short, Fleur Fantasia is a full-stack e-commerce web app that allows users to
     * [Apache Maven](https://maven.apache.org/)
 * [Angular](https://angular.io/)
     * [TypeScript](https://www.typescriptlang.org/)
-* [Okta](https://developer.okta.com/code/angular/)
-    * Okta sign-in widget
-    * Okta Angular
-    * Okta Auth JS
+* [Auth0](https://auth0.com/docs/quickstart)
 * [Stripe API](https://stripe.com/docs/api)
+* Hosted on [AWS] (https://aws.amazon.com/)
+    * [RDS](https://aws.amazon.com/rds/): MySQL database hosting
+    * [CloudFront](https://aws.amazon.com/cloudfront/): HTTPS Angular web hosting
+    * [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk): Spring deployment
+    * [S3](https://aws.amazon.com/pm/serv-s3): Static Angular web hosting
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

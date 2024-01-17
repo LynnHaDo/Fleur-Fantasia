@@ -3,7 +3,7 @@ import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import { CartService } from './services/cart.service';
 import { CheckoutService } from './services/checkout.service';
-import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 // Main app components
 import { AppComponent } from './app.component';
@@ -33,21 +32,14 @@ import { CheckoutPaymentComponent } from './components/checkout-payment/checkout
 
 // Login related components
 import { LoginStatusComponent } from './components/login-status/login-status.component';
-import { LoginComponent } from './components/login/login.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { MemberComponent } from './components/member/member.component';
-import { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG, OktaAuthGuard } from '@okta/okta-angular';
-import { OktaAuth } from '@okta/okta-auth-js';
-
+import { AuthModule, AuthGuard, AuthHttpInterceptor } from '@auth0/auth0-angular';
 import fleurConfig from './config/fleur-config';
-const oktaConfig = fleurConfig.oidc;
-const oktaAuth = new OktaAuth(oktaConfig);
 
 const routes: Routes = [
-    {path: 'order-history', component: OrderHistoryComponent, canActivate: [OktaAuthGuard], data: {onAuthRequired: sendToLoginPage}},
-    {path: 'member', component: MemberComponent, canActivate: [OktaAuthGuard], data: {onAuthRequired: sendToLoginPage}},
-    {path: 'login/callback', component: OktaCallbackComponent},
-    {path: 'login', component: LoginComponent},
+    {path: 'order-history', component: OrderHistoryComponent, canActivate: [AuthGuard]},
+    {path: 'member', component: MemberComponent, canActivate: [AuthGuard]},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'cart', component: CartDetailsComponent},
     {path: 'products/:id', component: ProductDetailsComponent},
@@ -73,7 +65,6 @@ const routes: Routes = [
     CheckoutInfoComponent,
     CheckoutDeliveryComponent,
     CheckoutPaymentComponent,
-    LoginComponent,
     LoginStatusComponent,
     MemberComponent,
     OrderHistoryComponent
@@ -85,22 +76,26 @@ const routes: Routes = [
     NgbModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    OktaAuthModule
+    AuthModule.forRoot({
+        domain: fleurConfig.oidc.domain,
+        clientId: fleurConfig.oidc.clientId,
+        authorizationParams: {
+          redirect_uri: fleurConfig.oidc.redirectUri,
+          audience: fleurConfig.oidc.apiUrl
+        },
+        httpInterceptor: {
+            allowedList: [
+                {
+                    uriMatcher: (uri) => uri.indexOf('/order') > -1
+                }
+            ]
+        }
+    })
   ],
-  providers:[ProductService, CartService, CheckoutService, 
-            {provide: OKTA_CONFIG, useValue: {oktaAuth}},
-            {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
-            ],
+  providers:[ProductService, CartService, CheckoutService,
+            {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 
 export class AppModule { }
-
-function sendToLoginPage(oktaAuth: OktaAuth, injector: Injector): void {
-    // Access the router service
-    const router = injector.get(Router);
-
-    // Navigate to login page
-    router.navigate(['/login']);
-}
 

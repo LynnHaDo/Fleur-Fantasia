@@ -1,9 +1,15 @@
 <div class = "login-status-header">
-  <div *ngIf="isAuthenticated && userFullName" style="display: flex; align-items: center;">
-    <p style="margin-bottom: 0">Welcome back, {{ userFullName }}</p>
+  <div *ngIf="isAuthenticated" class = "welcom-msg">
+    <p>Welcome back, <span id = "user_email">{{ userFullName }}</span></p>
   </div>
-  <button *ngIf="!isAuthenticated" routerLink="/login" class = "security-btn"><p>Log in</p><i class="fa-solid fa-right-to-bracket"></i></button>
-  <button *ngIf="isAuthenticated" (click)="logOut()" class = "security-btn"><p>Log out</p><i class="fa-solid fa-right-from-bracket"></i></button>
-  <button *ngIf="isAuthenticated" class = "security-btn" routerLink="/member"><p>Member</p></button>
-  <button *ngIf="isAuthenticated" class = "security-btn" routerLink="/order-history"><p>Orders</p></button>
+
+  <div *ngIf="isAuthenticated; else loggedOut">
+    <button (click)="logOut()" class = "security-btn"><p>Log out</p><i class="fa-solid fa-right-from-bracket"></i></button>
+  <button class = "security-btn" routerLink="/member"><p>Member</p></button>
+  <button class = "security-btn" routerLink="/order-history"><p>Orders</p></button>
+  </div>
+
+  <ng-template #loggedOut>
+    <button (click)="logIn()" class = "security-btn"><p>Log in</p><i class="fa-solid fa-right-to-bracket"></i></button>
+  </ng-template>
 </div>

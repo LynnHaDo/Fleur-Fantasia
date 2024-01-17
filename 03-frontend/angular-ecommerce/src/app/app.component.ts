@@ -1,6 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { fadeInAnimation, fadeOutAnimation } from 'angular-animations'
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -13,12 +15,12 @@ import { fadeInAnimation, fadeOutAnimation } from 'angular-animations'
 ]
 })
 export class AppComponent {
-  title = 'angular-ecommerce';
+  //title = 'angular-ecommerce';
   showLoader: boolean = true;
   opacity = 1;
   display = "block";
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, @Inject(DOCUMENT) private document: Document) {}
 
   // Preventing default behavior of clicking on 'a' tags
   @HostListener('window:click', ['$event'])

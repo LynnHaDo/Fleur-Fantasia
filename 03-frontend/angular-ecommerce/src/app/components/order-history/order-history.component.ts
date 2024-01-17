@@ -22,7 +22,7 @@ export class OrderHistoryComponent implements OnInit {
         this.orderHistoryService.getOrderHistory(theEmail).subscribe(
             data => {
                 this.orderHistoryItems = data;
-                console.log(this.orderHistoryItems);
+                this.orderHistoryItems.sort((orderA, orderB) => {return new Date(orderB.dateCreated).getTime() - new Date(orderA.dateCreated).getTime()})
                 this.orderHistoryItems.forEach((order) => this.retrieveItems(order))
             }
         )

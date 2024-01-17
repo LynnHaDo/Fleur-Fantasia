@@ -1,9 +1,6 @@
 .login-status-header {
-    display:-webkit-box;
-    display:-webkit-flex;
-    display:-moz-box;
-    display:-ms-flexbox;
-    display:flex
+    position: absolute;
+    bottom: 35px;
 }
 .security-btn {
     min-width:95px;
@@ -16,7 +13,7 @@
     align-items: center;
     height: 43px;
     justify-content: center;
-    margin-left: 10px;
+    margin-bottom: 10px;
 }
 
 .security-btn:hover{
@@ -25,7 +22,6 @@
 }
 
 .security-btn p {
-    display: block;
     margin-bottom: 0;
 }
 
@@ -35,19 +31,4 @@
 
 .security-btn>i, .security-btn>p{
     color:var(--dark-green);
-}
-
-.login-status-user-info {
-    line-height:43px;
-    border:1px solid var(--border-color);
-    font-size:14px;
-    color:#666;
-    padding:0 17px;
-    -webkit-border-radius:var(--btn-radius);
-    -moz-border-radius:var(--btn-radius);
-    border-radius:var(--btn-radius);
-    -webkit-transition:all .5s ease;
-    -o-transition:all .5s ease;
-    -moz-transition:all .5s ease;
-    transition:all .5s ease
 }

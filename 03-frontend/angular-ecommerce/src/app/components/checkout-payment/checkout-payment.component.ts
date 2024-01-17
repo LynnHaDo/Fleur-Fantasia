@@ -181,6 +181,7 @@ export class CheckoutPaymentComponent implements OnInit {
                     // Inform user of the error
                     this.paymentStatus.textContent = result.error.message;
                 } else {
+                    thePurchase.order.totalPrice /= 100; // Update purchase price to the database
                     this.saveOrder(thePurchase);
                     this.resetCheckoutStatus();
                     this.resetCart();

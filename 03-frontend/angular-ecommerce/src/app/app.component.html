@@ -3,6 +3,16 @@
     <h5>Loading...</h5>
 </div>
 <div class="page-wrapper">
+    <div class = "hamburger-menu-wrapper" #hamburgerMenuWrapper>
+        <label>
+            <input type="checkbox">
+            <span class="menu"> <span class="hamburger"></span> </span>
+            <div class = "hamburger-content">
+                <app-cart-status></app-cart-status>
+                <app-product-category-menu class = "hamburger-product-menu"></app-product-category-menu>
+            </div>
+        </label>
+    </div>
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
@@ -22,10 +32,10 @@
                 <div class="container-fluid">
                     <div class="header-wrap">
                         <app-search></app-search>
-                        <app-login-status></app-login-status>
-                        <app-cart-status></app-cart-status>
+                        <div class = "cart-wrapper">
+                            <app-cart-status></app-cart-status>
+                        </div>
                     </div>
-                    <div class="account-wrap"></div>
                 </div>
             </div>
         </header>

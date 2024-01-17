@@ -1,25 +1,38 @@
-<div class = "main-content container-fluid">
-    <div class = "section-content-p30">
-            <div class = "row mb-3">
-                <h3>Order history</h3>
-            </div>
-            <div class = "row" *ngFor="let order of orderHistoryItems">
-                <div class = "col-md-3">
-                    <h4>{{ order.dateCreated!.toLocaleString().split('T')[0] }}</h4>
-                    <p class = "mt-2">Tracking number: #<span class = "highlight">{{ order.orderTrackingNumber }}</span></p>
-                    <p class = "price">{{ order.totalPrice | currency: 'USD'}}</p>
-                    <p class = "mt-2">{{ order.totalQuantity }} items</p>
-                </div>
-                <div class = "col-md-9">
-                    <div class = "row">
-                        <div class = "col-md-3" *ngFor = "let item of order.orderHistoryItems">
-                            <a routerLink="/products/{{item.productId}}"><img class = "rounded" src = "{{ item.imageUrl }}" /></a>
-                            <p style = "margin-bottom: 5px; margin-top: 15px;">Unit price: {{ item.unitPrice | currency: 'USD'}}</p>
-                            <p>Qty: {{ item.quantity }}</p>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
+<div class="main-content container-fluid">
+  <div class="section-content-p30">
+    <div class="row mb-3">
+      <h3>Order history</h3>
     </div>
+    <div class="row" *ngIf="orderHistoryItems != undefined && orderHistoryItems.length > 0">
+      <div class="row" *ngFor="let order of orderHistoryItems">
+        <div class="col-md-3">
+          <h4>{{ order.dateCreated!.toLocaleString().split("T")[0] }}</h4>
+          <p class="mt-2">
+            Tracking number: #<span class="highlight">{{
+              order.orderTrackingNumber
+            }}</span>
+          </p>
+          <p class="price">{{ order.totalPrice | currency : "USD" }}</p>
+          <p class="mt-2">{{ order.totalQuantity }} items</p>
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-3" *ngFor="let item of order.orderHistoryItems">
+              <a routerLink="/products/{{ item.productId }}"
+                ><img class="rounded" src="{{ item.imageUrl }}"
+              /></a>
+              <p style="margin-bottom: 5px; margin-top: 15px">
+                Unit price: {{ item.unitPrice | currency : "USD" }}
+              </p>
+              <p>Qty: {{ item.quantity }}</p>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <div class="row" *ngIf="orderHistoryItems == undefined || orderHistoryItems?.length == 0" class = "alert alert-warning col-md-12" role="alert">
+        You have no orders
+    </div>
+  </div>
 </div>

@@ -1,6 +1,12 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+/** 
 import { OktaAuthStateService, OKTA_AUTH } from '@okta/okta-angular';
 import OktaAuth from '@okta/okta-auth-js';
+*/
+import { AuthService } from '@auth0/auth0-angular';
+import fleurConfig from 'src/app/config/fleur-config';
+
 
 @Component({
   selector: 'app-login-status',
@@ -12,34 +18,50 @@ export class LoginStatusComponent implements OnInit {
     userFullName: string = '';
     storage: Storage = sessionStorage;
 
-    constructor(private oktaAuthService: OktaAuthStateService, 
-        @Inject(OKTA_AUTH) private oktaAuth: OktaAuth){}
+    constructor(
+        /** 
+        private oktaAuthService: OktaAuthStateService, 
+        @Inject(OKTA_AUTH) private oktaAuth: OktaAuth
+        */
+       private auth: AuthService,
+       @Inject(DOCUMENT) public document: Document){}
 
-    ngOnInit(): void {
-        // Subscribe to authentication state changes
-        this.oktaAuthService.authState$.subscribe(
-            (result) => {
-                this.isAuthenticated = result.isAuthenticated!;
-                this.getUserDetails();
-            }
-        )
+    ngOnInit(): void {       
+       this.auth.isAuthenticated$.subscribe(
+        (result) => {
+            this.isAuthenticated = result;
+            this.getUserDetails();
+        }
+       ) 
     }
 
+    
     getUserDetails(){
         // If user has been authenticated
-        if (this.isAuthenticated){
-            // Fetch all the logged in user's claims
-            this.oktaAuth.getUser().then(
-                (res) => {
-                    this.userFullName = res.name as string;
-                    let userEmail = res.email as string;
-                    this.storage.setItem("userEmail", userEmail);
-                }
-            )
-        }
+        this.auth.user$.subscribe((data) => {
+            var email = data?.email!;
+            this.storage.setItem("userEmail", email);
+            this.userFullName = email.split("@")[0]
+        });
+    }
+    
+
+    logIn(){
+        this.auth.loginWithRedirect({
+            authorizationParams : {
+                redirect_uri: fleurConfig.oidc.redirectUri,
+                //audience: fleurConfig.oidc.apiUrl
+            }
+        });
+        this.getUserDetails();
     }
 
     logOut(){
-        this.oktaAuth.signOut(); // terminate the session
+        this.auth.logout({ 
+            logoutParams: {
+              returnTo: fleurConfig.oidc.redirectUri
+            }
+        }); 
+        this.storage.removeItem("userEmail");
     }
 }

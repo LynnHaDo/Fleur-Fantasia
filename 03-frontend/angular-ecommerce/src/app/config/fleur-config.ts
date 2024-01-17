@@ -1,8 +1,10 @@
 export default {
     oidc: {
-        clientId: '0oaebtvo2oiMSbPTu5d7',
-        issuer: 'https://dev-47566462.okta.com/oauth2/default',
-        redirectUri: "https://localhost:4200/login/callback",
-        scopes: ['openid', 'profile', 'email']
+        clientId: 'Auth0-client-id',
+        apiUrl: 'Auth0-api-url',
+        domain: 'Auth0-domain',
+        issuer: 'https://{Auth0-domain}/',
+        redirectUri: "AWS-web-hosting-link",
+        scopes: 'openid profile email read:users read:user_idp_tokens read:current_user',
     }
 }

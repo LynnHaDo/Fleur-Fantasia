@@ -1,12 +1,12 @@
-USE `full-stack-ecommerce`;
+USE `fleurdb`;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- Drop all existing entries 
-TRUNCATE `full-stack-ecommerce`.`orders`;
-TRUNCATE `full-stack-ecommerce`.`order_item`;
-TRUNCATE `full-stack-ecommerce`.`address`;
-TRUNCATE `full-stack-ecommerce`.`customer`;
+TRUNCATE `fleurdb`.`orders`;
+TRUNCATE `fleurdb`.`order_item`;
+TRUNCATE `fleurdb`.`address`;
+TRUNCATE `fleurdb`.`customer`;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
